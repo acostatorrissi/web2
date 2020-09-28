@@ -1,0 +1,260 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face{
+    font-family: RefugioFont;
+    src: url(BebasNeue-Regular.woff);
+    font-weight: bold;
+}
+
+html{
+    font-family: Roboto, sans-serif;
+}
+
+ul li a, header a{
+    text-decoration: none;
+    padding: 10px;
+}
+
+a, a:visited{
+    color: rgb(230, 227, 227);
+}
+
+.navegador li, h1{
+    transition: transform .2s;
+    margin: 0 10px;
+}
+
+.navegador li:hover, h1:hover{
+    transform: scale(1.2);
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    position: fixed;
+    width: 100%;
+    color: rgb(230, 227, 227);
+}
+
+.header.dark{
+    background-color: rgba(0, 0, 0, 0.918);
+    position: static;
+    color: rgb(230, 227, 227);
+}
+
+#logo{
+    text-align: center;
+    padding: 15px 20px;
+    width:500px;
+}
+
+#logo h1{
+    font-family: RefugioFont, sans-serif;
+    font-size: 50px;
+}
+
+#pie-logo{
+    font-size: 20px;
+    letter-spacing: 2.5px;
+    
+}
+
+#nav{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 350px 20px;
+    font-weight: 15px;
+}
+
+.page-container{
+    background-image: url("../images/refugio1.jpg"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+
+.content{
+    height: 650px;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    height: 310px;
+    background-color: rgba(0, 0, 0, 0.918);
+    color:rgb(230, 227, 227);
+    justify-content: space-between;
+    padding: 25px;  
+}
+
+.footer-top{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+    height: 80%;
+    align-items: baseline;
+}
+
+.formulario .hidden{
+    display: none;
+}
+
+.formulario{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: rgba(255,255,255,0.5);
+    margin-top: 5px;
+}
+
+.formulario form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+#btn-subs, #btn-check{
+    background-color: rgba(0, 0, 0, 0.918);
+    width:50%;
+    color:  rgb(230, 227, 227);
+    padding: 5px;
+    font-weight: 150px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#btn-subs:hover, #btn-check:hover{
+    cursor: pointer;
+}
+
+
+.informacion-empresa{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
+    height: 150px;
+}
+
+.informacion-empresa li{
+    list-style: none;
+    padding: 10px 15px;
+    text-align: right;
+    align-items: center;
+}
+
+.datos-empresa{
+    width: 80%;
+    margin-right: 60px;
+}
+
+#logo-footer{
+    width: 70px;
+    height: 70px;
+}
+
+#footer-bottom{
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid grey;
+    content: auto;
+    margin: 0 100px;
+}
+
+.creadores{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.rights{
+    text-transform: uppercase;
+}
+
+.redes-sociales{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.redes{
+ padding: 5px;
+}
+
+.company ul li{
+    list-style: disc;
+}
+
+th, .title-innerpg{
+    text-align: left;     
+    font-size: 30px;
+    width: 205px;
+    border: none;
+    padding-bottom: 20px;
+}
+
+td{
+    border: solid black;
+    padding: 35px;
+}
+
+table{
+    border-spacing: 0;  
+    border-collapse: collapse;
+    height: 100%;
+}
+
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    padding: 100px 0;
+}
+
+.company{
+    justify-content: center;
+    width: 100%;
+}
+
+
+#tablaComida, #tablaBebida{
+    position: sticky;
+    width: 35%;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.txtDiv{
+    width: 45%;
+    padding: 0px 75px;
+    text-align: justify;
+}
+
+.imgStaff{
+    width: 100%;
+    height: auto;
+}
+
+.imgDiv{
+    width: 45%;
+    padding: 0px 75px;
+}
+
+p{
+    padding: 10px 0px;
+}
+
