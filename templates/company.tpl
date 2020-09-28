@@ -1,7 +1,7 @@
 {include file="header.tpl"}
     <div class="container company">
         <div class="imgDiv">
-            <img class="imgStaff" src="images/refugioArco.jpg" alt="Paisaje">
+            <img class="imgStaff" src="https://t.ly/fLvw" alt="Paisaje">
         </div>
         <div class="txtDiv">
             <h4 class="title-innerpg">EL VALLE DEL PICAPEDRERO</h4>
