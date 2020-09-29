@@ -7,21 +7,22 @@
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/1f59a7fced.js" crossorigin="anonymous"></script>
+    <script src="js/javascript.js"></script>
 </head>
 <body>
     <header class="header dark">
         <div id="logo">
-            <a href="index.html">
+            <a href="home">
                 <h1>|EL REFUGIO|</h1>
                 <div id="pie-logo">BAR SERRANO</div>
             </a>
         </div>
         <div class="navegador">
             <ul id="nav">
-                <a href="index.html"><li>INICIO</li></a>
+                <a href="home"><li>INICIO</li></a>
                 <a href="#contact"><li>CONTACTO</li></a>
-                <a href="company.html"><li>QUIENES SOMOS</li></a>
-                <a href="#"><li>NUESTRA CARTA</li></a>
+                <a href="company"><li>QUIENES SOMOS</li></a>
+                <a href="carta"><li>NUESTRA CARTA</li></a>
             </ul>
         </div>
     </header>  

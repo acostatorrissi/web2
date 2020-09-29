@@ -1,7 +1,7 @@
 <?php
 
-require_once 'tablaModel.php';
-require_once 'tablaView.php';
+require_once './Model/ProductModel.php';
+require_once './View/ProductView.php';
 
 class ProductController{
 
@@ -14,18 +14,23 @@ class ProductController{
         $this->view = new ProductView();  
     }
 
-    function showProductsAll(){
 
+    function showProducts(){
         //pido al modelo
         $products = $this->model->getProducts();   
-    
-        //actualizo la vista
-        $this->view->showHeader();
-        $this->view->showProducts($products);
-        $this->view->showFooter();
-
+        $drinks = $this->model->getDrinks(); 
+        $this->view->showProducts($products, $drinks);
     }
 
+    function showHome(){
+        $this->view->showHome();
+    }
+
+    function showCompany(){
+        $this->view->showCompany();
+    }
+
+   
 
 }
 
