@@ -104,7 +104,7 @@ footer{
     align-items: baseline;
 }
 
-.formulario .hidden{
+/*.formulario .hidden{
     display: none;
 }
 
@@ -120,7 +120,46 @@ footer{
     display: flex;
     flex-direction: column;
     margin-top: 5px;
+}*/
+
+.formulario.hidden{
+    display: none;
 }
+
+.formulario{
+    height: 70%;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.formulario.table form{
+
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.formulario input{
+    font-size: 10px;
+}
+
+.formulario form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    height: auto;
+}
+
+.submit-btn{
+    text-align: center;
+}
+
+/**/
 
 #btn-subs, #btn-check{
     background-color: rgba(0, 0, 0, 0.918);

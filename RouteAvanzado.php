@@ -11,6 +11,9 @@
     $r->addRoute("home", "GET", "ProductController", "showHome");
     $r->addRoute("company", "GET", "ProductController", "showCompany");
     $r->addRoute("carta", "GET", "ProductController", "showProducts");
+    $r->addRoute("admin", "GET", "ProductController", "showAdminPage");
+    $r->addRoute("insert", "POST", "ProductController", "insertProduct");
+    $r->addRoute("delete/:ID", "GET", "ProductController", "deleteProduct");
 
     //Esto lo veo en TasksView
     //$r->addRoute("insert", "POST", "ProductController", "InsertTask");

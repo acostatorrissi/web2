@@ -14,12 +14,17 @@ class ProductController{
         $this->view = new ProductView();  
     }
 
-
     function showProducts(){
         //pido al modelo
         $products = $this->model->getProducts();   
         $drinks = $this->model->getDrinks(); 
         $this->view->showProducts($products, $drinks);
+    }
+
+    function showAdminPage(){
+        $products = $this->model->getProducts();
+        $drinks = $this->model->getDrinks();
+        $this->view->showAdminPage($products, $drinks);
     }
 
     function showHome(){
@@ -28,6 +33,21 @@ class ProductController{
 
     function showCompany(){
         $this->view->showCompany();
+    }
+
+    function insertProduct(){
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $precio = $_POST['precio'];
+        $id_categoria = $_POST['id_categoria'];
+        $this->model->addProducts($nombre, $descripcion, $precio, $id_categoria);
+        header("Location: ".BASE_URL."admin");
+    }
+
+    function deleteProduct($params = null){
+        $id = $params[':ID'];
+        $this->model->deleteProduct($id);
+        header("Location: ".BASE_URL."admin");
     }
 
    

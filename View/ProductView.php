@@ -9,7 +9,14 @@ class ProductView{
         $smarty->assign('productos', $productos);
         $smarty->assign('bebidas', $drinks);
         $smarty->display('templates/products.tpl'); 
-       
+    }
+
+    function showAdminPage($productos, $drinks){
+        $smarty = new Smarty();
+        $smarty->assign('productos', $productos);
+        $smarty->assign('bebidas', $drinks);
+        $smarty->display('templates/products_admin.tpl');
+
     }
 
     function showHome(){
