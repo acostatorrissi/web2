@@ -24,7 +24,8 @@ class ProductController{
     function showAdminPage(){
         $products = $this->model->getProducts();
         $drinks = $this->model->getDrinks();
-        $this->view->showAdminPage($products, $drinks);
+        $edit = false;
+        $this->view->showAdminPage($products, $drinks, $edit);
     }
 
     function showHome(){
@@ -50,6 +51,23 @@ class ProductController{
         header("Location: ".BASE_URL."admin");
     }
 
+    function showAdminEditPage(){
+        $products = $this->model->getProducts();
+        $drinks = $this->model->getDrinks();
+        $edit = true;
+        $this->view->showAdminPage($products, $drinks, $edit);
+    }
+
+    function updateProduct($params = null){
+        header("Location: ".BASE_URL."admin");
+        $id = $params[':ID'];
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $precio = $_POST['precio'];
+        $id_categoria = $_POST['id_categoria'];
+        $this->model->updateProduct($id, $nombre, $descripcion, $precio, $id_categoria);
+        header("Location: ".BASE_URL."admin");
+    }
    
 
 }

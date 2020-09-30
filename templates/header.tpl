@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestra Carta</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/1f59a7fced.js" crossorigin="anonymous"></script>
     <script src="js/javascript.js"></script>
+    <base href="BASE_URL">
 </head>
 <body>
     <header class="header dark">
