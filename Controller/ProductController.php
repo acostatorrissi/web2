@@ -22,10 +22,11 @@ class ProductController{
     }
 
     function showAdminPage(){
+        $id = 0;
         $products = $this->model->getProducts();
         $drinks = $this->model->getDrinks();
         $edit = false;
-        $this->view->showAdminPage($products, $drinks, $edit);
+        $this->view->showAdminPage($products, $drinks, $edit, $id);
     }
 
     function showHome(){
@@ -51,16 +52,16 @@ class ProductController{
         header("Location: ".BASE_URL."admin");
     }
 
-    function showAdminEditPage(){
+    function showAdminEditPage($params = null){
+        $id = $params[':ID'];
         $products = $this->model->getProducts();
         $drinks = $this->model->getDrinks();
-        $edit = true;
-        $this->view->showAdminPage($products, $drinks, $edit);
+        $edit = true;   //bool para ver que tpl incluye smarty
+        $this->view->showAdminPage($products, $drinks, $edit, $id);
     }
 
-    function updateProduct($params = null){
-        header("Location: ".BASE_URL."admin");
-        $id = $params[':ID'];
+    function updateProduct(){
+        $id = $_POST['id']; //lo obtengo del formulario (readonly, si le pongo disabled queda mas lindo pero no funciona)
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];

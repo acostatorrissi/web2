@@ -22,7 +22,7 @@
                     <tr>
                         <td class="bold">{$bebida->nombre|upper}</td>
                         <td>{$bebida->descripcion}</td>
-                        <td>${$bebida->precio} <a href="delete/{$bebida->id}"><i class="far fa-trash-alt btn-delete"></i></a> <i class="far fa-edit btn-edit"></i></td>
+                        <td>${$bebida->precio} <a href="delete/{$bebida->id}"><i class="far fa-trash-alt btn-delete"></i></a>  <a href="edit/{$bebida->id}"><i class="far fa-edit btn-edit"></i></a></td>
                     </tr>
                 {/foreach}
             </table> 

@@ -11,10 +11,11 @@ class ProductView{
         $smarty->display('templates/products.tpl'); 
     }
 
-    function showAdminPage($productos, $drinks, $edit){
+    function showAdminPage($productos, $drinks, $edit, $id){
         $smarty = new Smarty();
         $smarty->assign('productos', $productos);
         $smarty->assign('bebidas', $drinks);
+        $smarty->assign('id', $id);
         $smarty->assign('edit', $edit);
         $smarty->display('templates/products_admin.tpl');
     }
