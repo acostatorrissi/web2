@@ -1,6 +1,6 @@
 <footer>
         <div class="footer-top">
-            <div class="formulario"> 
+           <!-- <div class="formulario"> 
                 <span id="contact">SUSCRIBITE A NUESTRAS OFERTAS</span>
                 <form>
                     <input placeholder="Nombre y Apellido" type="text" name="NombreCompleto" id="name">
@@ -15,7 +15,7 @@
                     <span id="acceso"></span>
                     <button id="btn-check">Verificar</button>
                 </div>
-            </div> 
+            </div> -->
             <div class="informacion-empresa">
                 <ul class="datos-empresa">
                     <li>El Refugio | Bar Serrano | refugiodetandil@gmail.com</li>

@@ -21,8 +21,7 @@
         </div>
         <div class="navegador">
             <ul id="nav">
-                <a href="home"><li>INICIO</li></a>
-                <a href="#contact"><li>CONTACTO</li></a>
+                <a href="home"><li>INICIO</li></a>  <!-- borrado el contacto, porque se borró el form de contacto -->
                 <a href="company"><li>QUIENES SOMOS</li></a>
                 <a href="carta"><li>NUESTRA CARTA</li></a>
             </ul>

@@ -187,7 +187,7 @@ footer{
 .informacion-empresa li{
     list-style: none;
     padding: 10px 15px;
-    text-align: right;
+    text-align: justify; /*Era right, lo cambié para que quede al medio*/
     align-items: center;
 }
 
@@ -197,8 +197,8 @@ footer{
 }
 
 #logo-footer{
-    width: 70px;
-    height: 70px;
+    width: 120px;
+    height: 120px;
 }
 
 #footer-bottom{
@@ -297,3 +297,9 @@ p{
     padding: 10px 0px;
 }
 
+i{
+    color:darkgray;
+}
+i:hover{
+    color: rgb(58, 51, 51);
+}
