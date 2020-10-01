@@ -14,6 +14,8 @@
     $r->addRoute("admin", "GET", "ProductController", "showAdminPage");
     $r->addRoute("insert", "POST", "ProductController", "insertProduct");
     $r->addRoute("delete/:ID", "GET", "ProductController", "deleteProduct");
+    $r->addRoute("edit/:ID", "GET", "ProductController", "showAdminEditPage");
+    $r->addRoute("edit/edit", "POST", "ProductController", "updateProduct"); //el doble edit es porque ya se encuentra en edit y el form le va a sumar un edit, se podria cambiar el nombre en el form y aca
 
     //Esto lo veo en TasksView
     //$r->addRoute("insert", "POST", "ProductController", "InsertTask");

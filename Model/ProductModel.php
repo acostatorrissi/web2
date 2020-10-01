@@ -38,6 +38,11 @@ class ProductModel{
         $query->execute(array($id));
     }
 
+    function updateProduct($id, $nombre, $descripcion, $precio, $id_categoria){
+        $query = $this->db->prepare("UPDATE producto SET descripcion=?, id_categoria=?, nombre=?,  precio=? WHERE id=?");
+        $query->execute([$descripcion, $id_categoria, $nombre, $precio, $id]);
+    }
+
 
 }
 
