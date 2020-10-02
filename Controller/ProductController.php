@@ -19,13 +19,7 @@ class ProductController{
         $this->view->showProducts($products);
     }
 
-    function showCategory(){
-        $category = $this->model->getCategory();
-        $this->view->showCategory($category);
-    }
-
-    
-
+    //iria en el mvc del usuario administrador loggeado
     function showAdminPage(){
         $id = 0;
         $products = $this->model->getProducts();
@@ -57,12 +51,6 @@ class ProductController{
         header("Location: ".BASE_URL."admin");
     }
 
-    function showCategoryProducts($params = null){
-        $id = $params[':ID'];
-        $catProducts = $this->model->getProductsFromCat($id);
-        $this->view->showProductsFromCat($catProducts, $id);
-        
-    }
 
     function showAdminEditPage($params = null){
         $id = $params[':ID'];

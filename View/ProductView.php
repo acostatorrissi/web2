@@ -13,13 +13,7 @@ class ProductView{
         $smarty->display('templates/products.tpl'); 
     }
 
-    function showCategory($category){
-        $smarty = new Smarty();
-        $smarty->assign('categorias', $category);
-        $smarty->assign('titulo', $this->title = "Categorias");
-        $smarty->display('templates/category.tpl');
-    }
-
+    //esto iria en el mvc del admin que inicio sesion
     function showAdminPage($productos, $drinks, $edit, $id){
         $smarty = new Smarty();
         $smarty->assign('productos', $productos);
@@ -38,13 +32,8 @@ class ProductView{
         $smarty = new Smarty();
         $smarty->display('templates/company.tpl'); 
     }
-    
-    function showProductsFromCat($productos, $id){
-        $smarty = new Smarty();
-        $smarty->assign('productos', $productos);
-        $smarty->assign('titulo', $this->title = "productos");
-        $smarty->display('templates/category_product.tpl'); 
-    }
+
+   
 }
 
 

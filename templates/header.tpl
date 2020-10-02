@@ -23,6 +23,7 @@
             <ul id="nav">
                 <a href="home"><li>INICIO</li></a>  <!-- borrado el contacto, porque se borró el form de contacto -->
                 <a href="company"><li>QUIENES SOMOS</li></a>
+                <a href="category"><li>CATEGORIAS</li></a>
                 <a href="carta"><li>NUESTRA CARTA</li></a>
             </ul>
         </div>

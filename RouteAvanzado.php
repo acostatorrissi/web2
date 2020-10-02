@@ -1,6 +1,8 @@
 <?php
     require_once 'Controller/ProductController.php';
+    require_once 'Controller/CategoryController.php';
     require_once 'View/ProductView.php';
+    require_once 'View/CategoryView.php';
     require_once 'RouterClass.php';
     
 
@@ -10,9 +12,9 @@
 
     $r->addRoute("home", "GET", "ProductController", "showHome");
     $r->addRoute("company", "GET", "ProductController", "showCompany");
-    $r->addRoute("category", "GET", "ProductController", "showCategory");
+    $r->addRoute("category", "GET", "CategoryController", "showCategory");
+    $r->addRoute("category/:ID", "GET", "CategoryController", "showCategoryProducts");
     $r->addRoute("delete/:ID", "GET", "ProductController", "deleteProduct");
-    $r->addRoute("category/:ID", "GET", "ProductController", "showCategoryProducts");
     $r->addRoute("carta", "GET", "ProductController", "showProducts");
     $r->addRoute("admin", "GET", "ProductController", "showAdminPage");
     $r->addRoute("insert", "POST", "ProductController", "insertProduct");
