@@ -10,23 +10,17 @@
 
     $r->addRoute("home", "GET", "ProductController", "showHome");
     $r->addRoute("company", "GET", "ProductController", "showCompany");
+    $r->addRoute("category", "GET", "ProductController", "showCategory");
+    $r->addRoute("delete/:ID", "GET", "ProductController", "deleteProduct");
+    $r->addRoute("category/:ID", "GET", "ProductController", "showCategoryProducts");
     $r->addRoute("carta", "GET", "ProductController", "showProducts");
     $r->addRoute("admin", "GET", "ProductController", "showAdminPage");
     $r->addRoute("insert", "POST", "ProductController", "insertProduct");
-    $r->addRoute("delete/:ID", "GET", "ProductController", "deleteProduct");
     $r->addRoute("edit/:ID", "GET", "ProductController", "showAdminEditPage");
     $r->addRoute("edit/edit", "POST", "ProductController", "updateProduct"); //el doble edit es porque ya se encuentra en edit y el form le va a sumar un edit, se podria cambiar el nombre en el form y aca
 
-    //Esto lo veo en TasksView
-    //$r->addRoute("insert", "POST", "ProductController", "InsertTask");
-    //$r->addRoute("delete/:ID", "GET", "ProductController", "BorrarLaTaskQueVienePorParametro");
-    //$r->addRoute("completar/:ID", "GET", "ProductController", "MarkAsCompletedTask");
-
     //Ruta por defecto.
     $r->setDefaultRoute("ProductController", "showHome");
-
-    //Advance
-    //$r->addRoute("autocompletar", "GET", "TasksAdvanceController", "AutoCompletar");
 
     //run
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 

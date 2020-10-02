@@ -15,11 +15,16 @@ class ProductController{
     }
 
     function showProducts(){
-        //pido al modelo
         $products = $this->model->getProducts();   
-        $drinks = $this->model->getDrinks(); 
-        $this->view->showProducts($products, $drinks);
+        $this->view->showProducts($products);
     }
+
+    function showCategory(){
+        $category = $this->model->getCategory();
+        $this->view->showCategory($category);
+    }
+
+    
 
     function showAdminPage(){
         $id = 0;
@@ -52,12 +57,20 @@ class ProductController{
         header("Location: ".BASE_URL."admin");
     }
 
+    function showCategoryProducts($params = null){
+        $id = $params[':ID'];
+        $catProducts = $this->model->getProductsFromCat($id);
+        $this->view->showProductsFromCat($catProducts, $id);
+        
+    }
+
     function showAdminEditPage($params = null){
         $id = $params[':ID'];
         $products = $this->model->getProducts();
         $drinks = $this->model->getDrinks();
         $edit = true;   //bool para ver que tpl incluye smarty
         $this->view->showAdminPage($products, $drinks, $edit, $id);
+        
     }
 
     function updateProduct(){
@@ -70,6 +83,7 @@ class ProductController{
         header("Location: ".BASE_URL."admin");
     }
    
+
 
 }
 

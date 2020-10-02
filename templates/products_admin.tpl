@@ -6,5 +6,5 @@
     {else}
         {include file="form.tpl"}
     {/if}
-
+    
 {include file="footer.tpl"}
