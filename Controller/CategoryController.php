@@ -25,7 +25,25 @@ class CategoryController{
         $id = $params[':ID'];
         $catProducts = $this->model->getProductsFromCat($id);
         $this->view->showProductsFromCat($catProducts, $id);
-        
+    } //falta eliminar la concatenacion de la url 
+    //cuando volves a categorias u otra parte de la pagina
+
+    function insertCategory(){
+        $nombre = $_POST['nombre'];
+        $this->model->addCategory($nombre);
+        header("Location: ".BASE_URL."categoryadmin"); //falta la base
     }
 
+    function deleteCategory($params = null){
+        $id = $params[':ID'];
+        $this->model->deleteCategory($id);
+        header("Location: ".BASE_URL."categoryadmin");//falta la base
+    }
+
+    function showAdminCategory(){
+        $id = 0;
+        $category = $this->model->getCategory();
+        $edit = false;
+        $this->view->showAdminCategory($category, $edit, $id);
+    }
 }

@@ -1,4 +1,3 @@
-{include file="header.tpl"}
     <h2></h2>
     <div class="container">
         
@@ -11,7 +10,8 @@
                         <tr>
                             <td class='bold'>{$categoria->nombre|upper}</td></a>
                             <td> <a href='category/{$categoria->id_categoria}'> Ver mas</a> </td>
-                        </tr>
+                            <td> <a href="deletecategory/{$categoria->id_categoria}"><i class="far fa-trash-alt btn-delete"></i></a> <a href="editcategory/{$categoria->id_categoria}"> <i class="far fa-edit btn-edit"></i></a> </td>
+                            </tr>
                     {/foreach} 
                 </thead>  
             </table> 
@@ -19,4 +19,3 @@
         </div>
         
     </div>
-{include file="footer.tpl"}

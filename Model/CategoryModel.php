@@ -16,7 +16,6 @@ class CategoryModel{
 
         return $category;
     }
-
     
     function getProductsFromCat($id){
         //obtiene los productos de la bbdd
@@ -26,6 +25,16 @@ class CategoryModel{
     
         return $products;
 
+    }
+
+    function addCategory($nombre){
+        $query = $this->db->prepare('INSERT INTO categoria (nombre) VALUES (?)');
+        $query->execute([$nombre]);
+    }
+
+    function deleteCategory($id){
+        $query = $this->db->prepare("DELETE FROM categoria WHERE id=?");
+        $query->execute(array($id));
     }
 }
 
