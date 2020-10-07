@@ -15,19 +15,28 @@ class ProductController{
     }
 
     function showProducts(){
-
+        
         $products = $this->model->getProducts();   
-        $this->view->showProducts($products);
-       
+        $this->view->showProducts($products); 
     }
+
+    function showCategoryProducts($params = null){
+        $id = $params[':ID'];
+        $catProducts = $this->model->getProductsFromCat($id);
+        $this->view->showProductsFromCat($catProducts, $id);
+    } 
 
     //iria en el mvc del usuario administrador loggeado
     function showAdminPage(){
         $id = 0;
         $products = $this->model->getProducts();
-        $drinks = $this->model->getDrinks();
+        
+        
+        //$drinks = $this->model->getDrinks(); 
+        
         $edit = false;
-        $this->view->showAdminPage($products, $drinks, $edit, $id);
+        $this->view->showAdminProducts($products, $edit, $id);
+        //$this->view->showAdminPage($products, $drinks, $edit, $id);
     }
 
     function showHome(){
@@ -53,18 +62,16 @@ class ProductController{
         header("Location: ".BASE_URL."admin");
     }
 
-
     function showAdminEditPage($params = null){
         $id = $params[':ID'];
         $products = $this->model->getProducts();
-        $drinks = $this->model->getDrinks();
+        //$drinks = $this->model->getDrinks();
         $edit = true;   //bool para ver que tpl incluye smarty
-        $this->view->showAdminPage($products, $drinks, $edit, $id);
-        
+        $this->view->showAdminProducts($products, $edit, $id); 
     }
 
     function updateProduct(){
-        $id = $_POST['id']; //lo obtengo del formulario (readonly, si le pongo disabled queda mas lindo pero no funciona)
+        $id = $_POST['id']; 
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];

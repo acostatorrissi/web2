@@ -6,7 +6,6 @@ require_once './View/CategoryView.php';
 
 class CategoryController{
 
-    
     private $model;
     private $view;
 
@@ -21,15 +20,12 @@ class CategoryController{
         $this->view->showCategory($category);
     }
 
-    function showCategoryProducts($params = null){
-        
+  /*  function showCategoryProducts($params = null){
         $id = $params[':ID'];
         $catProducts = $this->model->getProductsFromCat($id);
         $this->view->showProductsFromCat($catProducts, $id);
-       // header("Location: ".BASE_URL."");
-    } //falta eliminar la concatenacion de la url 
-    //cuando volves a categorias u otra parte de la pagina
-
+    } 
+*/
     function insertCategory(){
         $nombre = $_POST['nombre'];
         $this->model->addCategory($nombre);
@@ -53,7 +49,7 @@ class CategoryController{
         $id = $_POST['id'];
         $nombre = $_POST['nombre'];
         $this->model->editCategory($nombre, $id);
-        header("Location: ".BASE_URL."categoryadmin"); //falta la base
+        header("Location: ".BASE_URL."categoryadmin"); 
     }
 
     function showEditCategory($params = null){

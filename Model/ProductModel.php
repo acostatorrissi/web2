@@ -19,6 +19,15 @@ class ProductModel{
         return $products;
     }
 
+    function getProductsFromCat($id){
+        //obtiene los productos de la bbdd -VER CAMBIAR A PROD
+        $query = $this->db->prepare("SELECT * FROM producto WHERE id_categoria =  $id ");
+        $query->execute();
+        $products = $query->fetchAll(PDO::FETCH_OBJ);
+    
+        return $products;
+    }
+
     function addProducts($nombre, $descripcion, $precio, $id_categoria){
         $query = $this->db->prepare('INSERT INTO producto (descripcion, id_categoria, nombre, precio) VALUES (?,?,?,?)');
         $query->execute([$descripcion, $id_categoria, $nombre, $precio]);
