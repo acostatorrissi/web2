@@ -4,19 +4,31 @@ require_once('libs/smarty/Smarty.class.php');
 
 class ProductView{
 
-    function showProducts($productos, $drinks) {
+    private $title;
+
+    function showProducts($products) {
         $smarty = new Smarty();
-        $smarty->assign('productos', $productos);
-        $smarty->assign('bebidas', $drinks);
-        $smarty->display('templates/products.tpl'); 
+        $smarty->assign('productos', $products);
+        $smarty->assign('titulo', $this->title = "nuestra carta");
+        $smarty->display('templates/products.tpl');
     }
 
-    function showAdminPage($productos, $drinks){
+    function showProductsFromCat($productos, $id){
         $smarty = new Smarty();
         $smarty->assign('productos', $productos);
-        $smarty->assign('bebidas', $drinks);
-        $smarty->display('templates/products_admin.tpl');
+        $smarty->assign('titulo', $this->title = "productos");
+        $smarty->display('templates/category_product.tpl'); 
+    }
 
+    //esto iria en el mvc del admin que inicio sesion
+    //function showAdminPage($productos, $drinks, $edit, $id){
+     function showAdminProducts($productos, $edit, $id){ 
+        $smarty = new Smarty();
+        $smarty->assign('productos', $productos);
+        //$smarty->assign('bebidas', $drinks);
+        $smarty->assign('id', $id);
+        $smarty->assign('edit', $edit);
+        $smarty->display('templates/products_admin.tpl');
     }
 
     function showHome(){
@@ -29,7 +41,7 @@ class ProductView{
         $smarty->display('templates/company.tpl'); 
     }
 
-    
+   
 }
 
 

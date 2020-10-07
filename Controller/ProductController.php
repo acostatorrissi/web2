@@ -15,16 +15,28 @@ class ProductController{
     }
 
     function showProducts(){
-        //pido al modelo
+        
         $products = $this->model->getProducts();   
-        $drinks = $this->model->getDrinks(); 
-        $this->view->showProducts($products, $drinks);
+        $this->view->showProducts($products); 
     }
 
+    function showCategoryProducts($params = null){
+        $id = $params[':ID'];
+        $catProducts = $this->model->getProductsFromCat($id);
+        $this->view->showProductsFromCat($catProducts, $id);
+    } 
+
+    //iria en el mvc del usuario administrador loggeado
     function showAdminPage(){
+        $id = 0;
         $products = $this->model->getProducts();
-        $drinks = $this->model->getDrinks();
-        $this->view->showAdminPage($products, $drinks);
+        
+        
+        //$drinks = $this->model->getDrinks(); 
+        
+        $edit = false;
+        $this->view->showAdminProducts($products, $edit, $id);
+        //$this->view->showAdminPage($products, $drinks, $edit, $id);
     }
 
     function showHome(){
@@ -50,7 +62,25 @@ class ProductController{
         header("Location: ".BASE_URL."admin");
     }
 
+    function showAdminEditPage($params = null){
+        $id = $params[':ID'];
+        $products = $this->model->getProducts();
+        //$drinks = $this->model->getDrinks();
+        $edit = true;   //bool para ver que tpl incluye smarty
+        $this->view->showAdminProducts($products, $edit, $id); 
+    }
+
+    function updateProduct(){
+        $id = $_POST['id']; 
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $precio = $_POST['precio'];
+        $id_categoria = $_POST['id_categoria'];
+        $this->model->updateProduct($id, $nombre, $descripcion, $precio, $id_categoria);
+        header("Location: ".BASE_URL."admin");
+    }
    
+
 
 }
 

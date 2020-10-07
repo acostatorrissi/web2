@@ -12,20 +12,20 @@ class ProductModel{
     function getProducts(){
 
         //obtiene los productos de la bbdd
-        $query = $this->db->prepare('SELECT * FROM producto WHERE id_categoria=2');
+        $query = $this->db->prepare('SELECT * FROM producto');
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_OBJ);
     
         return $products;
     }
 
-    function getDrinks(){
-
-        $query = $this->db->prepare('SELECT * FROM producto WHERE id_categoria=1');
+    function getProductsFromCat($id){
+        //obtiene los productos de la bbdd -VER CAMBIAR A PROD
+        $query = $this->db->prepare("SELECT * FROM producto WHERE id_categoria =  $id ");
         $query->execute();
-        $drinks = $query->fetchAll(PDO::FETCH_OBJ);
+        $products = $query->fetchAll(PDO::FETCH_OBJ);
     
-        return $drinks;
+        return $products;
     }
 
     function addProducts($nombre, $descripcion, $precio, $id_categoria){
@@ -37,6 +37,20 @@ class ProductModel{
         $query = $this->db->prepare("DELETE FROM producto WHERE id=?");
         $query->execute(array($id));
     }
+
+    function updateProduct($id, $nombre, $descripcion, $precio, $id_categoria){
+        $query = $this->db->prepare("UPDATE producto SET descripcion=?, id_categoria=?, nombre=?,  precio=? WHERE id=?");
+        $query->execute([$descripcion, $id_categoria, $nombre, $precio, $id]);
+    }
+
+    function getDrinks(){
+
+        $query = $this->db->prepare('SELECT * FROM producto WHERE id_categoria=1' );
+        $query->execute();
+        $drinks = $query->fetchAll(PDO::FETCH_OBJ);
+    
+        return $drinks;
+    } 
 
 
 }
