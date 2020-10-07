@@ -34,17 +34,14 @@ class ProductModel{
         $query->execute([$descripcion, $id_categoria, $nombre, $precio, $id]);
     }
 
-    
-    /* esta no iria
     function getDrinks(){
 
-        $query = $this->db->prepare('SELECT * FROM producto WHERE id_categoria=1');
+        $query = $this->db->prepare('SELECT * FROM producto WHERE id_categoria=1' );
         $query->execute();
         $drinks = $query->fetchAll(PDO::FETCH_OBJ);
     
         return $drinks;
-    }
-    */
+    } 
 
 
 }

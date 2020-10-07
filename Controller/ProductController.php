@@ -15,8 +15,10 @@ class ProductController{
     }
 
     function showProducts(){
+
         $products = $this->model->getProducts();   
         $this->view->showProducts($products);
+       
     }
 
     //iria en el mvc del usuario administrador loggeado

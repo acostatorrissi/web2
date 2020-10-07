@@ -32,6 +32,12 @@ class CategoryModel{
         $query->execute([$nombre]);
     }
 
+    function editCategory($nombre, $id){
+        $query = $this->db->prepare('UPDATE categoria SET nombre=? WHERE id=?');
+        $query->execute(array($nombre, $id));
+    }
+
+
     function deleteCategory($id){
         $query = $this->db->prepare("DELETE FROM categoria WHERE id=?");
         $query->execute(array($id));

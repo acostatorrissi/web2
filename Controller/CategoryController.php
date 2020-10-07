@@ -22,9 +22,11 @@ class CategoryController{
     }
 
     function showCategoryProducts($params = null){
+        
         $id = $params[':ID'];
         $catProducts = $this->model->getProductsFromCat($id);
         $this->view->showProductsFromCat($catProducts, $id);
+       // header("Location: ".BASE_URL."");
     } //falta eliminar la concatenacion de la url 
     //cuando volves a categorias u otra parte de la pagina
 
@@ -46,4 +48,19 @@ class CategoryController{
         $edit = false;
         $this->view->showAdminCategory($category, $edit, $id);
     }
+
+    function updateCategory(){
+        $id = $_POST['id'];
+        $nombre = $_POST['nombre'];
+        $this->model->editCategory($nombre, $id);
+        header("Location: ".BASE_URL."categoryadmin"); //falta la base
+    }
+
+    function showEditCategory($params = null){
+        $id = $params[':ID'];
+        $category = $this->model->getCategory();
+        $edit = true;
+        $this->view->showAdminCategory($category, $edit, $id);
+    }
+
 }

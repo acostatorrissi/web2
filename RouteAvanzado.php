@@ -21,7 +21,8 @@
     $r->addRoute("categoryadmin", "GET", "CategoryController", "showAdminCategory");
     $r->addRoute("insert", "POST", "ProductController", "insertProduct");
     $r->addRoute("edit/:ID", "GET", "ProductController", "showAdminEditPage");
-    $r->addRoute("editcategory/:ID", "GET", "CategoryController", "showAdminCategory");
+    $r->addRoute("editcategory/:ID", "GET", "CategoryController", "showEditCategory");
+    $r->addRoute("editcategory/edit", "POST", "CategoryController", "updateCategory");
     $r->addRoute("edit/edit", "POST", "ProductController", "updateProduct"); //el doble edit es porque ya se encuentra en edit y el form le va a sumar un edit, se podria cambiar el nombre en el form y aca
 
     //Ruta por defecto.
