@@ -7,6 +7,7 @@ class ProductController{
 
     private $model;
     private $view;
+    private $modelCategory;//ROMPEMOS RESPONSABILIDADES POR UNA RAZON VALIDA
 
     public function __construct(){
           //instancio el modelo y la vista en constructor para poder reutilizar variables
@@ -26,14 +27,14 @@ class ProductController{
         $this->view->showProductsFromCat($catProducts, $id);
     } 
 
-    //iria en el mvc del usuario administrador loggeado
     function showAdminPage(){
+        $this->modelCategory = new CategoryModel(); //ver preguntar en consulta
         $id = 0;
         $products = $this->model->getProducts();
-        
+        $categories = $this->modelCategory->getCategory();
         $edit = false;
-        $this->view->showAdminProducts($products, $edit, $id);
-        //$this->view->showAdminPage($products, $drinks, $edit, $id);
+        $this->view->showAdminProducts($products, $edit, $id, $categories);
+       
     }
 
     function showHome(){
@@ -60,11 +61,12 @@ class ProductController{
     }
 
     function showAdminEditPage($params = null){
+        $this->modelCategory = new CategoryModel();//ver preguntar en consulta
         $id = $params[':ID'];
         $products = $this->model->getProducts();
-        //$drinks = $this->model->getDrinks();
+        $categories = $this->modelCategory->getCategory();//ver preguntar en consulta
         $edit = true;   //bool para ver que tpl incluye smarty
-        $this->view->showAdminProducts($products, $edit, $id); 
+        $this->view->showAdminProducts($products, $edit, $id, $categories); 
     }
 
     function updateProduct(){

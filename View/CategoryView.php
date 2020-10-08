@@ -12,14 +12,7 @@ class CategoryView{
         $smarty->assign('titulo', $this->title = "Categorias");
         $smarty->display('templates/category.tpl');
     }
-    /*
-    function showProductsFromCat($productos, $id){
-        $smarty = new Smarty();
-        $smarty->assign('productos', $productos);
-        $smarty->assign('titulo', $this->title = "productos");
-        $smarty->display('templates/category_product.tpl'); 
-    }
-    */
+
     function showAdminCategory($category, $edit, $id){
         $smarty = new Smarty();
         $smarty->assign('categorias', $category);

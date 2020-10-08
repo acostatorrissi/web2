@@ -2,9 +2,12 @@
 {include file="admin_table.tpl"}
 
     {if $edit==true}
-        {include file="form_edit.tpl"} 
+        {assign "buttonName" "Editar"} 
+        {include file="form_edit.tpl"}
     {else}
-        {include file="form.tpl"}
-    {/if}  
-    
+        {assign "buttonName" "Agregar"}
+        {include file="form_insert.tpl"}     
+    {/if}
+
+{include file="selectCategories.tpl"}
 {include file="footer.tpl"}

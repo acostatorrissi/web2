@@ -20,22 +20,16 @@ class CategoryController{
         $this->view->showCategory($category);
     }
 
-  /*  function showCategoryProducts($params = null){
-        $id = $params[':ID'];
-        $catProducts = $this->model->getProductsFromCat($id);
-        $this->view->showProductsFromCat($catProducts, $id);
-    } 
-*/
     function insertCategory(){
         $nombre = $_POST['nombre'];
         $this->model->addCategory($nombre);
-        header("Location: ".BASE_URL."categoryadmin"); //falta la base
+        header("Location: ".BASE_URL."admincategory"); //falta la base
     }
 
     function deleteCategory($params = null){
         $id = $params[':ID'];
         $this->model->deleteCategory($id);
-        header("Location: ".BASE_URL."categoryadmin");//falta la base
+        header("Location: ".BASE_URL."admincategory");//falta la base
     }
 
     function showAdminCategory(){
@@ -49,7 +43,7 @@ class CategoryController{
         $id = $_POST['id'];
         $nombre = $_POST['nombre'];
         $this->model->editCategory($nombre, $id);
-        header("Location: ".BASE_URL."categoryadmin"); 
+        header("Location: ".BASE_URL."admincategory"); 
     }
 
     function showEditCategory($params = null){
