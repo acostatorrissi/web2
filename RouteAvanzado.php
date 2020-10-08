@@ -2,7 +2,7 @@
     require_once 'Controller/AuthController.php';
     require_once 'Controller/ProductController.php';
     require_once 'Controller/CategoryController.php';
-    require_once 'View/AuthView.php';
+    require_once 'View/UsserView.php';
     require_once 'View/ProductView.php';
     require_once 'View/CategoryView.php';
     require_once 'RouterClass.php';
@@ -12,6 +12,7 @@
     $r = new Router();
 
     $r->addRoute("login", "GET", "AuthController", "showLogin");
+    $r->addRoute("verify", "POST", "AuthController", "verifyUsser");
 
     $r->addRoute("home", "GET", "ProductController", "showHome");
     $r->addRoute("company", "GET", "ProductController", "showCompany");

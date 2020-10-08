@@ -1,7 +1,7 @@
 <?php
 
-require_once './Model/AuthModel.php';
-require_once './View/AuthView.php';
+require_once './Model/UsserModel.php';
+require_once './View/UsserView.php';
 
 class AuthController{
 
@@ -10,12 +10,31 @@ class AuthController{
 
     public function __construct(){
          
-        $this->model = new AuthModel();
-        $this->view = new AuthView();  
+        $this->model = new UsserModel();
+        $this->view = new UsserView();  
     }
 
 
     public function showLogin(){
         $this->view->showFormLogIn();
+    }
+
+    public function verifyUsser(){
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        if(!empty($email) && !empty($password)){
+
+        }else{
+            
+            die();
+        }
+
+        $usser = $this->model->getUsser($email);
+        if($usser && (password_verify($password, $usser->password))){
+            echo ("acceso exitoso");
+        }else{
+            echo('acceso denegado');
+        }
     }
 }
