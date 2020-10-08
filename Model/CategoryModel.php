@@ -16,16 +16,7 @@ class CategoryModel{
 
         return $category;
     }
-    /*
-    function getProductsFromCat($id){
-        //obtiene los productos de la bbdd -VER CAMBIAR A PROD
-        $query = $this->db->prepare("SELECT * FROM producto WHERE id_categoria =  $id ");
-        $query->execute();
-        $products = $query->fetchAll(PDO::FETCH_OBJ);
-    
-        return $products;
-    }
-    */
+  
     function addCategory($nombre){
         $query = $this->db->prepare('INSERT INTO categoria (nombre) VALUES (?)');
         $query->execute([$nombre]);
