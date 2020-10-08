@@ -13,13 +13,13 @@ html{
     font-family: Roboto, sans-serif;
 }
 
-ul li a, header a{
-    text-decoration: none;
+ul li a, header a {
+    text-decoration: none !important;
     padding: 10px;
 }
 
 a, a:visited{
-    color: rgb(230, 227, 227);
+    color: rgb(221, 218, 218)!important;
 }
 
 .navegador li, h1{
@@ -61,7 +61,6 @@ a, a:visited{
 #pie-logo{
     font-size: 20px;
     letter-spacing: 2.5px;
-    
 }
 
 #nav{
@@ -70,9 +69,9 @@ a, a:visited{
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    padding: 0 350px 20px;
     font-weight: 15px;
 }
+
 
 .page-container{
     background-image: url("https://t.ly/HdAA"); 
@@ -104,64 +103,13 @@ footer{
     align-items: baseline;
 }
 
-/*.formulario .hidden{
-    display: none;
-}
-
-.formulario{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    color: rgba(255,255,255,0.5);
-    margin-top: 5px;
-}
-
-.formulario form{
-    display: flex;
-    flex-direction: column;
-    margin-top: 5px;
-}*/
-
-.formulario.hidden{
-    display: none;
-}
-
-.formulario{
-    height: 70%;
-    width: 50%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 5px;
-}
-
-.formulario.table form{
-
-    height: 180px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.formulario input{
-    font-size: 10px;
-}
-
-.formulario form{
-    display: flex;
-    flex-direction: column;
-    margin-top: 5px;
-    height: auto;
-}
-
 .submit-btn{
     text-align: center;
 }
 
 /**/
 
-#btn-subs, #btn-check{
+#btn-check{
     background-color: rgba(0, 0, 0, 0.918);
     width:50%;
     color:  rgb(230, 227, 227);
@@ -171,7 +119,7 @@ footer{
     margin-top: 10px;
 }
 
-#btn-subs:hover, #btn-check:hover{
+#btn-check:hover{
     cursor: pointer;
 }
 
@@ -259,7 +207,7 @@ table{
     display: flex;
     justify-content: space-evenly;
     background-color: white;
-    padding: 100px 0;
+    padding: 30px 0;
 }
 
 .company{
@@ -268,9 +216,8 @@ table{
 }
 
 
-#tablaComida, #tablaBebida{
-    position: sticky;
-    width: 35%;
+#tabla-category{
+    margin: 0 auto;
 }
 
 .bold{

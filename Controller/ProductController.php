@@ -31,9 +31,6 @@ class ProductController{
         $id = 0;
         $products = $this->model->getProducts();
         
-        
-        //$drinks = $this->model->getDrinks(); 
-        
         $edit = false;
         $this->view->showAdminProducts($products, $edit, $id);
         //$this->view->showAdminPage($products, $drinks, $edit, $id);

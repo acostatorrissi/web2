@@ -1,6 +1,12 @@
-<div class="formulario table">
-    <form action="insertCategory" method="POST">
-        <label>Nombre de categoria: </label><input name="nombre" type="text" required>
-        <button id="btn-agregar-item">Agregar</button>   
-    </form>
-</div> 
+
+<div class="container">
+    <div class="formulario table">
+        <form action="insertCategory" method="POST">
+            <div class="form-group">
+                <label>Nombre de categoria: </label>
+                <input name="nombre" class="form-control" type="text" required>
+            </div>
+            <button id="btn-agregar-item" class="btn btn-check">Agregar</button>   
+        </form>
+    </div> 
+</div>

@@ -5,6 +5,6 @@
         {include file="form_edit.tpl"} 
     {else}
         {include file="form.tpl"}
-    {/if}
+    {/if}  
     
 {include file="footer.tpl"}

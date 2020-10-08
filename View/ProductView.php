@@ -25,7 +25,6 @@ class ProductView{
      function showAdminProducts($productos, $edit, $id){ 
         $smarty = new Smarty();
         $smarty->assign('productos', $productos);
-        //$smarty->assign('bebidas', $drinks);
         $smarty->assign('id', $id);
         $smarty->assign('edit', $edit);
         $smarty->display('templates/products_admin.tpl');

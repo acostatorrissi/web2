@@ -1,6 +1,8 @@
 <?php
+    require_once 'Controller/AuthController.php';
     require_once 'Controller/ProductController.php';
     require_once 'Controller/CategoryController.php';
+    require_once 'View/AuthView.php';
     require_once 'View/ProductView.php';
     require_once 'View/CategoryView.php';
     require_once 'RouterClass.php';
@@ -9,18 +11,20 @@
 
     $r = new Router();
 
+    $r->addRoute("login", "GET", "AuthController", "showLogin");
+
     $r->addRoute("home", "GET", "ProductController", "showHome");
     $r->addRoute("company", "GET", "ProductController", "showCompany");
     $r->addRoute("delete/:ID", "GET", "ProductController", "deleteProduct");
     $r->addRoute("carta", "GET", "ProductController", "showProducts");
     $r->addRoute("admin", "GET", "ProductController", "showAdminPage");
-    $r->addRoute("category", "GET", "CategoryController", "showCategory");
     $r->addRoute("insert", "POST", "ProductController", "insertProduct");
     $r->addRoute("edit/:ID", "GET", "ProductController", "showAdminEditPage");
     $r->addRoute("edit", "POST", "ProductController", "updateProduct"); 
 
+    $r->addRoute("category", "GET", "CategoryController", "showCategory");
     $r->addRoute("category/:ID", "GET", "ProductController", "showCategoryProducts");//cambiado el controller
-    $r->addRoute("categoryadmin", "GET", "CategoryController", "showAdminCategory");
+    $r->addRoute("admincategory", "GET", "CategoryController", "showAdminCategory");
     $r->addRoute("editcategory/:ID", "GET", "CategoryController", "showEditCategory");
     $r->addRoute("editcategory", "POST", "CategoryController", "updateCategory");
     $r->addRoute("insertCategory", "POST", "CategoryController", "insertCategory");

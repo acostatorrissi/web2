@@ -1,7 +1,7 @@
 <h2></h2>
 <div class="container">
     
-    <div id="tablaComida">   
+    <div id="tabla-category">   
             
         <table>
             <thead>
@@ -15,7 +15,14 @@
                 {/foreach} 
             </thead>  
         </table> 
+
+        {if $edit==true}
+            {include file="category_edit.tpl"} 
+        {else}
+            {include file="category_insert.tpl"}
+        {/if}
         
     </div>
+    
     
 </div>
