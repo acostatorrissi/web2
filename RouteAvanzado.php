@@ -19,7 +19,7 @@
     $r->addRoute("edit/:ID", "GET", "ProductController", "showAdminEditPage");
     $r->addRoute("edit", "POST", "ProductController", "updateProduct"); 
 
-    $r->addRoute("category/:ID", "GET", "ProductController", "showCategoryProducts");//cambiado el controller
+    $r->addRoute("category/:ID", "GET", "ProductController", "showCategoryProducts");//cambiado el controller de categoria a producto
     $r->addRoute("categoryadmin", "GET", "CategoryController", "showAdminCategory");
     $r->addRoute("editcategory/:ID", "GET", "CategoryController", "showEditCategory");
     $r->addRoute("editcategory", "POST", "CategoryController", "updateCategory");

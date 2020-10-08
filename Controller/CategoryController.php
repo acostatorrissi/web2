@@ -20,12 +20,6 @@ class CategoryController{
         $this->view->showCategory($category);
     }
 
-  /*  function showCategoryProducts($params = null){
-        $id = $params[':ID'];
-        $catProducts = $this->model->getProductsFromCat($id);
-        $this->view->showProductsFromCat($catProducts, $id);
-    } 
-*/
     function insertCategory(){
         $nombre = $_POST['nombre'];
         $this->model->addCategory($nombre);

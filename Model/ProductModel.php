@@ -20,7 +20,7 @@ class ProductModel{
     }
 
     function getProductsFromCat($id){
-        //obtiene los productos de la bbdd -VER CAMBIAR A PROD
+        //obtiene los productos de la bbdd por categoria
         $query = $this->db->prepare("SELECT * FROM producto WHERE id_categoria =  $id ");
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_OBJ);
@@ -42,16 +42,5 @@ class ProductModel{
         $query = $this->db->prepare("UPDATE producto SET descripcion=?, id_categoria=?, nombre=?,  precio=? WHERE id=?");
         $query->execute([$descripcion, $id_categoria, $nombre, $precio, $id]);
     }
-
-    function getDrinks(){
-
-        $query = $this->db->prepare('SELECT * FROM producto WHERE id_categoria=1' );
-        $query->execute();
-        $drinks = $query->fetchAll(PDO::FETCH_OBJ);
-    
-        return $drinks;
-    } 
-
-
 }
 
