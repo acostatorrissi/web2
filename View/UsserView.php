@@ -6,8 +6,9 @@ class UsserView{
 
     private $title;
 
-    function showFormLogIn(){
+    function showFormLogIn($error = null){
         $smarty = new Smarty();
+        $smarty->assign('error', $error);
         $smarty->assign('titulo', $this->title = "Log In");
         $smarty->display('templates/login_form.tpl');
     }

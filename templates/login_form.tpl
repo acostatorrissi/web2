@@ -11,6 +11,11 @@
       <label for="password">Password: </label>
       <input type="password" class="form-control" id="password" name="password" placeholder="Password">
     </div>
+    {if $error}
+      <div class="alert alert-danger">
+        {$error}
+      </div>
+    {/if}
     <button type="submit" class="btn btn-check" >Ingresar</button>
   </form>
 </div>

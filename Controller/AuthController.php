@@ -32,9 +32,10 @@ class AuthController{
 
         $usser = $this->model->getUsser($email);
         if($usser && (password_verify($password, $usser->password))){
-            echo ("acceso exitoso");
+            header("Location: ".BASE_URL."admin");
         }else{
-            echo('acceso denegado');
+            $error = "Credenciales invalidas";
+            $this->view->showFormLogIn($error);
         }
     }
 }
