@@ -1,7 +1,7 @@
 {include file="header.tpl"}
-    <div class="container">
-        <div id="tablaComida">    
-            <table>
+    
+        <div class="container">    
+            <table id="tablaComida">
                 <thead>
                     <th>{$titulo|upper}</th>
                 </thead>
@@ -14,5 +14,5 @@
                 {/foreach}  
              </table> 
         </div>
-    </div>
+    
 {include file="footer.tpl"}

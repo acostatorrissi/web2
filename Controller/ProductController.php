@@ -27,16 +27,14 @@ class ProductController{
         $this->view->showProductsFromCat($catProducts, $id);
     } 
 
-    //iria en el mvc del usuario administrador loggeado
     function showAdminPage(){
         $this->modelCategory = new CategoryModel(); //ver preguntar en consulta
         $id = 0;
         $products = $this->model->getProducts();
-        $categories = $this->modelCategory->getCategory(); //ver preguntar en consulta
-        //$drinks = $this->model->getDrinks(); 
+        $categories = $this->modelCategory->getCategory();
         $edit = false;
         $this->view->showAdminProducts($products, $edit, $id, $categories);
-        //$this->view->showAdminPage($products, $drinks, $edit, $id);
+       
     }
 
     function showHome(){

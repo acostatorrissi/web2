@@ -2,7 +2,7 @@
     <h2></h2>
     <div class="container">
         
-        <div id="tablaComida">   
+        <div id="tabla-category">   
                 
             <table>
                 <thead>

@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+
     <div class="container">
         <div id="tablaComida">    
             <table>
@@ -15,5 +16,5 @@
              </table> 
         </div>
     </div>
-    <button><a href="category">Back</a></button>
+    
 {include file="footer.tpl"}

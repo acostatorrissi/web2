@@ -1,27 +1,12 @@
 <footer>
         <div class="footer-top">
-           <!-- <div class="formulario"> 
-                <span id="contact">SUSCRIBITE A NUESTRAS OFERTAS</span>
-                <form>
-                    <input placeholder="Nombre y Apellido" type="text" name="NombreCompleto" id="name">
-                    <input placeholder="Email" type="email" name="email" id="email">
-                </form>
-                <div>
-                    <button type="submit" id="btn-subs">Suscribirse</button>
-                </div>
-                <div class="formulario hidden">
-                    <span id="showCaptcha"></span>
-                    <input type="text" name="Captcha" id="inputCaptcha">
-                    <span id="acceso"></span>
-                    <button id="btn-check">Verificar</button>
-                </div>
-            </div> -->
+
             <div class="informacion-empresa">
                 <ul class="datos-empresa">
-                    <li>El Refugio | Bar Serrano | refugiodetandil@gmail.com</li>
+                    <li>El Refugio | Bar Serrano | </li>
+                    <li>refugiodetandil@gmail.com</li>
                     <li>Dr. Tasende 250 - Valle del Picapedrero</li>
-                    <li>TEL: 249 - 154209020</li>
-                    <li>Tandil 7000 - Argentina</li>
+                    <li>Tandil 7000 - Argentina | 249 - 154209020</li>
                 </ul>
                 <div>
                     <img id="logo-footer" src="images/refugiologo.png" alt="Logo del refugio">
