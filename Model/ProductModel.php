@@ -19,6 +19,14 @@ class ProductModel{
         return $products;
     }
 
+    function getProductById($id){
+        $query = $this->db->prepare("SELECT producto.*, categoria.url_imagen as img_url FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria WHERE id = $id ");
+        $query->execute();
+        $product = $query->fetch(PDO::FETCH_OBJ);
+
+        return $product;
+    }
+
     function getProductsFromCat($id){
         //obtiene los productos de la bbdd por categoria
         $query = $this->db->prepare("SELECT * FROM producto WHERE id_categoria =  $id ");

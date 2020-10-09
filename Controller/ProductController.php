@@ -21,6 +21,12 @@ class ProductController{
         $this->view->showProducts($products); 
     }
 
+    function showProductDetail($params = null){
+        $id = $params[':ID'];
+        $product = $this->model->getProductById($id);
+        $this->view->showProductDetail($product);
+    }
+
     function showCategoryProducts($params = null){
         $id = $params[':ID'];
         $catProducts = $this->model->getProductsFromCat($id);

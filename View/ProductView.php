@@ -13,6 +13,12 @@ class ProductView{
         $smarty->display('templates/products.tpl');
     }
 
+    function showProductDetail($product){
+        $smarty = new Smarty();
+        $smarty->assign('producto', $product);
+        $smarty->display('templates/product_detail.tpl');
+    }
+
     function showProductsFromCat($productos, $id){
         $smarty = new Smarty();
         $smarty->assign('productos', $productos);

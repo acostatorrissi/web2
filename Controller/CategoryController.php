@@ -22,7 +22,8 @@ class CategoryController{
 
     function insertCategory(){
         $nombre = $_POST['nombre'];
-        $this->model->addCategory($nombre);
+        $urlImagen = $_POST['urlImagen'];
+        $this->model->addCategory($nombre, $urlImagen);
         header("Location: ".BASE_URL."admincategory"); //falta la base
     }
 

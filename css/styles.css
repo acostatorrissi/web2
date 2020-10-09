@@ -230,6 +230,20 @@ table{
     text-align: justify;
 }
 
+.hProduct{
+    margin: 0px;
+    width: 60%;
+}
+
+.wrapperProduct{
+    width: 25%;
+}
+
+.pProduct{
+    width: 100%;
+    margin: 0px;
+}
+
 .imgStaff{
     width: 100%;
     height: auto;
@@ -238,6 +252,17 @@ table{
 .imgDiv{
     width: 45%;
     padding: 0px 75px;
+}
+
+.figProduct{
+    width: 350px;
+    height: 350px;
+}
+
+.imgProduct{
+    width: 90%;
+    padding-left: 10%; 
+    padding-right: 0;
 }
 
 p{

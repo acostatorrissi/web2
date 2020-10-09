@@ -17,9 +17,9 @@ class CategoryModel{
         return $category;
     }
   
-    function addCategory($nombre){
-        $query = $this->db->prepare('INSERT INTO categoria (nombre) VALUES (?)');
-        $query->execute([$nombre]);
+    function addCategory($nombre, $urlImagen){
+        $query = $this->db->prepare('INSERT INTO categoria (nombre, url_imagen) VALUES (?,?)');
+        $query->execute([$nombre, "$urlImagen"]);
     }
 
     function editCategory($nombre, $id){

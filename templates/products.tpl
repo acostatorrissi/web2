@@ -10,6 +10,7 @@
                         <td class="bold">{$producto->nombre|upper}</td>
                         <td>{$producto->descripcion}</td>
                         <td>{$producto->precio}</td>
+                        <td><a href="product/{$producto->id}">Conocelo!</a></td>
                     </tr>
                 {/foreach}  
              </table> 
