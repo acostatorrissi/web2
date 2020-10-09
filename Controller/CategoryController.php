@@ -65,6 +65,7 @@ class CategoryController{
             header("Location: ".BASE_URL."login"); 
             die();
         }
+        
     }
 
 }

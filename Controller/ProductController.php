@@ -88,6 +88,7 @@ class ProductController{
         session_start();
         if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL'])){
             header("Location: ".BASE_URL."login"); 
+            
             die();
         }
     }

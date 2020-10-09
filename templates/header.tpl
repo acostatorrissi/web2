@@ -14,18 +14,34 @@
 </head>
 <body>
     <header class="header dark">
-        <div id="logo">
-            <a href="home">
+        <div class="d-flex">
+                {if isset($smarty.session.USSER_EMAIL)}
+                    <a class="nav-link ml-auto">
+                        <button class="btn btn-check">{$smarty.session.USSER_EMAIL}</button>
+                {else}
+                    <a class="nav-link ml-auto" href="login">
+                    <button class="btn btn-check">Iniciar sesion</button>
+                {/if}
+            </a>
+        </div>
+
+        <div id="logo" >
+            <a href="home" id="logo-center">
                 <h1>|EL REFUGIO|</h1>
                 <div id="pie-logo">BAR SERRANO</div>
             </a>
         </div>
         <div class="navegador">
-            <ul id="nav">
-                <a href="home"><li>INICIO</li></a>  <!-- borrado el contacto, porque se borró el form de contacto -->
+            <ul id="nav" >
+                <a href="home"><li>INICIO</li></a> 
                 <a href="company"><li>QUIENES SOMOS</li></a>
-                <a href="category"><li>CATEGORIAS</li></a>
-                <a href="carta"><li>NUESTRA CARTA</li></a>
+                {if isset($smarty.session.USSER_EMAIL)}
+                    <a href="admin"><li>ADMIN PRODUCTOS</li></a>
+                    <a href="admincategory"><li>ADMIN CATEGORIAS</li></a>
+                {else}
+                    <a href="category"><li>CATEGORIAS</li></a>
+                    <a href="carta"><li>NUESTRA CARTA</li></a>
+                {/if}
             </ul>
         </div>
     </header>  
