@@ -16,13 +16,14 @@
     <header class="header dark">
         <div class="d-flex">
                 {if isset($smarty.session.USSER_EMAIL)}
-                    <a class="nav-link ml-auto">
+                    <a class="nav-link ml-auto" href="logout">
                         <button class="btn btn-check">{$smarty.session.USSER_EMAIL}</button>
                 {else}
                     <a class="nav-link ml-auto" href="login">
-                    <button class="btn btn-check">Iniciar sesion</button>
+                        <button class="btn btn-check">Iniciar sesion</button>
                 {/if}
-            </a>
+                </a>
+            
         </div>
 
         <div id="logo" >
@@ -33,12 +34,12 @@
         </div>
         <div class="navegador">
             <ul id="nav" >
-                <a href="home"><li>INICIO</li></a> 
-                <a href="company"><li>QUIENES SOMOS</li></a>
                 {if isset($smarty.session.USSER_EMAIL)}
-                    <a href="admin"><li>ADMIN PRODUCTOS</li></a>
-                    <a href="admincategory"><li>ADMIN CATEGORIAS</li></a>
+                    <a href="admin"><li>ADMINISTRAR PRODUCTOS</li></a>
+                    <a href="admincategory"><li>ADMINISTRAR CATEGORIAS</li></a>
                 {else}
+                    <a href="home"><li>INICIO</li></a> 
+                    <a href="company"><li>QUIENES SOMOS</li></a>
                     <a href="category"><li>CATEGORIAS</li></a>
                     <a href="carta"><li>NUESTRA CARTA</li></a>
                 {/if}
