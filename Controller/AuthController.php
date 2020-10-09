@@ -23,15 +23,20 @@ class AuthController{
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        if(!empty($email) && !empty($password)){
-
-        }else{
-            
-            die();
+        if(empty($email) || empty($password)){
+            $error="Faltan datos obligatorios";
+            $this->view->showFormLogIn($error);
+            die();  
         }
 
         $usser = $this->model->getUsser($email);
         if($usser && (password_verify($password, $usser->password))){
+
+            session_start();
+           
+            $_SESSION['USSER_ID'] = $usser->id;
+            $_SESSION['USSER_EMAIL'] = $usser->email;
+
             header("Location: ".BASE_URL."admin");
         }else{
             $error = "Credenciales invalidas";
