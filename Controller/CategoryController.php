@@ -21,6 +21,7 @@ class CategoryController{
     }
 
     function insertCategory(){
+        $this->checkLog();
         $nombre = $_POST['nombre'];
         $urlImagen = $_POST['urlImagen'];
         $this->model->addCategory($nombre, $urlImagen);
@@ -28,12 +29,14 @@ class CategoryController{
     }
 
     function deleteCategory($params = null){
+        $this->checkLog();
         $id = $params[':ID'];
         $this->model->deleteCategory($id);
         header("Location: ".BASE_URL."admincategory");//falta la base
     }
 
     function showAdminCategory(){
+        $this->checkLog();
         $id = 0;
         $category = $this->model->getCategory();
         $edit = false;
@@ -41,6 +44,7 @@ class CategoryController{
     }
 
     function updateCategory(){
+        $this->checkLog();
         $id = $_POST['id'];
         $nombre = $_POST['nombre'];
         $this->model->editCategory($nombre, $id);
@@ -48,10 +52,21 @@ class CategoryController{
     }
 
     function showEditCategory($params = null){
+        $this->checkLog();
         $id = $params[':ID'];
         $category = $this->model->getCategory();
         $edit = true;
         $this->view->showAdminCategory($category, $edit, $id);
+    }
+
+    //verifica si el usuario esta loggeado.
+    function checkLog(){
+        session_start();
+        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL'])){
+            header("Location: ".BASE_URL."login"); 
+            die();
+        }
+        
     }
 
 }

@@ -34,6 +34,7 @@ class ProductController{
     } 
 
     function showAdminPage(){
+        $this->checkLog();
         $this->modelCategory = new CategoryModel(); //ver preguntar en consulta
         $id = 0;
         $products = $this->model->getProducts();
@@ -52,6 +53,7 @@ class ProductController{
     }
 
     function insertProduct(){
+        $this->checkLog();
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];
@@ -61,12 +63,14 @@ class ProductController{
     }
 
     function deleteProduct($params = null){
+        $this->checkLog();
         $id = $params[':ID'];
         $this->model->deleteProduct($id);
         header("Location: ".BASE_URL."admin");
     }
 
     function showAdminEditPage($params = null){
+        $this->checkLog();
         $this->modelCategory = new CategoryModel();//ver preguntar en consulta
         $id = $params[':ID'];
         $products = $this->model->getProducts();
@@ -76,6 +80,7 @@ class ProductController{
     }
 
     function updateProduct(){
+        $this->checkLog();
         $id = $_POST['id']; 
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
@@ -85,7 +90,14 @@ class ProductController{
         header("Location: ".BASE_URL."admin");
     }
    
-
+    function checkLog(){
+        session_start();
+        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL'])){
+            header("Location: ".BASE_URL."login"); 
+            
+            die();
+        }
+    }
 
 }
 
