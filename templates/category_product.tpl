@@ -11,6 +11,7 @@
                         <td class="bold">{$producto->nombre|upper}</td>
                         <td>${$producto->precio}</td>
                         <td><a href="product/{$producto->id}">Conocelo!</a></td>
+                        <td><a href="category/{$producto->id_categoria}">{$producto->categoria_nombre}</a></td>
                     </tr>
                 {/foreach}  
              </table> 

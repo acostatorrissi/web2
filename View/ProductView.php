@@ -22,7 +22,7 @@ class ProductView{
     function showProductsFromCat($productos, $id){
         $smarty = new Smarty();
         $smarty->assign('productos', $productos);
-        $smarty->assign('titulo', $this->title = "productos");
+        $smarty->assign('titulo', $this->title = $productos[0]->categoria_nombre);
         $smarty->display('templates/category_product.tpl'); 
     }
 
