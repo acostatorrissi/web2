@@ -12,7 +12,7 @@ class ProductModel{
     function getProducts(){
 
         //obtiene los productos de la bbdd
-        $query = $this->db->prepare('SELECT * FROM producto');
+        $query = $this->db->prepare('SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria');
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_OBJ);
     
