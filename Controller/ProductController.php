@@ -41,7 +41,6 @@ class ProductController{
         $categories = $this->modelCategory->getCategory();
         $edit = false;
         $this->view->showAdminProducts($products, $edit, $id, $categories);
-       
     }
 
     function showHome(){
@@ -94,7 +93,6 @@ class ProductController{
         session_start();
         if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL'])){
             header("Location: ".BASE_URL."login"); 
-            
             die();
         }
     }
