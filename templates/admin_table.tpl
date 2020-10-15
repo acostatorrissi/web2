@@ -10,6 +10,7 @@
                     <td>{$producto->descripcion}</td>
                     <td>${$producto->precio} </td>
                     <td> <a href="delete/{$producto->id}"><i class="far fa-trash-alt btn-delete"></i></a> <a href="edit/{$producto->id}"> <i class="far fa-edit btn-edit"></i></a></td>
+                    <td>{$producto->categoria_nombre}</td>
                 </tr>
             {/foreach}  
         </table> 
