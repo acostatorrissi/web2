@@ -281,3 +281,13 @@ i{
 i:hover{
     color: rgb(58, 51, 51);
 }
+
+.black, .black:visited{
+    color: rgb(100, 95, 95) !important;
+    font-weight: bold !important;
+}
+
+.black:hover{
+    color: black !important;
+    text-decoration: none;
+}
