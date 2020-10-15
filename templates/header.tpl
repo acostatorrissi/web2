@@ -27,7 +27,7 @@
         </div>
 
         <div id="logo" >
-            <a href="home" id="logo-center">
+            <a {if isset($smarty.session.USSER_EMAIL)} href="admin" {else} href="home" {/if} id="logo-center">
                 <h1>|EL REFUGIO|</h1>
                 <div id="pie-logo">BAR SERRANO</div>
             </a>
