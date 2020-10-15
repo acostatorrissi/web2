@@ -36,8 +36,9 @@ class AuthController{
            
             $_SESSION['USSER_ID'] = $usser->id;
             $_SESSION['USSER_EMAIL'] = $usser->email;
-
+            $_SESSION['LAST_ACTIVITY'] = time();
             header("Location: ".BASE_URL."admin");
+            die();
         }else{
             $error = "Credenciales invalidas";
             $this->view->showFormLogIn($error);
@@ -45,10 +46,11 @@ class AuthController{
     }
 
     
-    function logOut(){
+    public function logOut(){
         session_start();
         session_destroy();
         header("Location: ".BASE_URL."login");
+        die();
     }
     
 }

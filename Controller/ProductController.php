@@ -91,8 +91,10 @@ class ProductController{
    
     function checkLog(){
         session_start();
-        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL'])){
-            header("Location: ".BASE_URL."login"); 
+        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
+            || (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 0.0166))){
+
+            header("Location: ".BASE_URL."logout"); 
             die();
         }
     }
