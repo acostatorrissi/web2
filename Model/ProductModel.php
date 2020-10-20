@@ -1,7 +1,7 @@
 <?php
 
 
-class ProductModel{
+class ProductModel{   //BINDEAR TODO
 
     private $db;
     //instancio una vez la conexion para reutilizarla
@@ -20,8 +20,8 @@ class ProductModel{
     }
 
     function getProductById($id){
-        $query = $this->db->prepare("SELECT producto.*, categoria.url_imagen as img_url FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria WHERE id = $id ");
-        $query->execute();
+        $query = $this->db->prepare("SELECT producto.*, categoria.url_imagen as img_url FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria WHERE id = ?");
+        $query->execute([$id]);
         $product = $query->fetch(PDO::FETCH_OBJ);
 
         return $product;
@@ -29,8 +29,8 @@ class ProductModel{
 
     function getProductsFromCat($id){
         //obtiene los productos de la bbdd por categoria
-        $query = $this->db->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria WHERE producto.id_categoria = $id ");
-        $query->execute();
+        $query = $this->db->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria WHERE producto.id_categoria = ? ");
+        $query->execute([$id]);
         $products = $query->fetchAll(PDO::FETCH_OBJ);
     
         return $products;
