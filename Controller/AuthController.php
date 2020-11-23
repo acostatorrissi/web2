@@ -14,9 +14,35 @@ class AuthController{
         $this->view = new UsserView();  
     }
 
-
     public function showLogin(){
         $this->view->showFormLogIn();
+    }
+
+    public function showUssers(){
+        $this->adminCheckLog();
+        $ussers = $this->model->getUsers();
+        $this->view->showUssers($ussers);
+    }
+
+    public function deleteUsser($params = null){ //VER SI ES NECESARIO VOLVER A CHECKEAR SESION
+        $this->adminCheckLog();
+        $id = $params[':ID'];
+        $this->model->deleteUsser($id);
+        $this->showUssers();
+    }
+
+    public function setAdminRole($params = null){
+        //$this->adminCheckLog();
+        $id = $params[':ID'];
+        $this->model->setAdminRole($id);
+        $this->showUssers();
+    }
+
+    public function setBasicRole($params = null){
+        //$this->adminCheckLog();
+        $id = $params[':ID'];
+        $this->model->setBasicRole($id);
+        $this->showUssers();
     }
 
     public function verifyUsser(){
@@ -28,16 +54,26 @@ class AuthController{
             $this->view->showFormLogIn($error);
             die();  
         }
+        $this->getUser($email, $password);
+    }
+
+    public function getUser($email, $password){
 
         $usser = $this->model->getUsser($email);
         if($usser && (password_verify($password, $usser->password))){
-
+            
             session_start();
            
             $_SESSION['USSER_ID'] = $usser->id;
             $_SESSION['USSER_EMAIL'] = $usser->email;
+            $_SESSION['USSER_ROLE'] = $usser->rol; // ver esto
             $_SESSION['LAST_ACTIVITY'] = time();
-            header("Location: ".BASE_URL."admin");
+
+            if($usser->rol == 0){
+                header("Location: ".BASE_URL."carta");//ver esto
+            }else{
+                header("Location: ".BASE_URL."admin");//ver esto
+            }
             die();
         }else{
             $error = "Credenciales invalidas";
@@ -45,7 +81,73 @@ class AuthController{
         }
     }
 
-    
+    public function showRegisterPage(){
+        $this->view->showRegisterPage();
+    }
+
+    public function registerNewUsser(){
+
+        $name = $_POST['name'];
+        $lastName = $_POST['lastName'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        
+        if(empty($name) || empty($lastName) || empty($email) || empty($password)){
+            $error="Faltan datos obligatorios";
+            $this->view->showRegisterPage($error);
+            die();  
+        }
+
+        $passwordEncrypted = password_hash($password, PASSWORD_DEFAULT);
+        $this->model->registerNewUsser($name, $lastName, $email, $passwordEncrypted);  //VER ESTO PUEDE SER INSEGURO
+        $this->getUser($email, $password); //no necesito verificar los datos porque acabo de registrar un usuario con los mismos
+    }
+/*
+    function checkLog(){
+        session_start();
+        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
+            && (!isset($_SESSION['LAST_ACTIVITY']))){
+            header("Location: ".BASE_URL."logout"); 
+            die();
+        }
+    }
+
+    function adminCheckLog(){ 
+        $this->checkLog();
+        if($_SESSION['USSER_ROLE'] == 0){
+            header("Location: ".BASE_URL."logout"); 
+            die();
+        }
+    }
+*/
+/*
+    function checkLog(){
+        session_start();
+        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
+            && (!isset($_SESSION['LAST_ACTIVITY']))){
+            header("Location: ".BASE_URL."logout"); 
+            die();
+        }
+    }
+*/
+    function adminCheckLog(){
+
+        $status = session_status();
+        if($status == PHP_SESSION_NONE){
+            //There is no active session
+            session_start();
+        }
+        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
+            && (!isset($_SESSION['LAST_ACTIVITY']))){
+            header("Location: ".BASE_URL."logout"); 
+            die();
+        }
+        if($_SESSION['USSER_ROLE'] == 0){
+            header("Location: ".BASE_URL."logout"); 
+            die();
+        }
+    }
+
     public function logOut(){
         session_start();
         session_destroy();

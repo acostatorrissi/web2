@@ -5,7 +5,7 @@ require_once('libs/smarty/Smarty.class.php');
 class ProductView{
 
     private $title;
-
+    
     function showProducts($products) {
         $smarty = new Smarty();
         $smarty->assign('productos', $products);
@@ -46,8 +46,6 @@ class ProductView{
         $smarty = new Smarty();
         $smarty->display('templates/company.tpl'); 
     }
-
-   
 }
 
 

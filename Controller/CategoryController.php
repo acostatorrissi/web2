@@ -16,12 +16,14 @@ class CategoryController{
     }
 
     function showCategory(){
+        session_start();
         $category = $this->model->getCategory();
         $this->view->showCategory($category);
     }
 
     function insertCategory(){
         $this->checkLog();
+        $this->adminCheckLog();
         $nombre = $_POST['nombre'];
         $urlImagen = $_POST['urlImagen'];
         $this->model->addCategory($nombre, $urlImagen);
@@ -30,6 +32,7 @@ class CategoryController{
 
     function deleteCategory($params = null){
         $this->checkLog();
+        $this->adminCheckLog();
         $id = $params[':ID'];
         $this->model->deleteCategory($id);
         header("Location: ".BASE_URL."admincategory");//falta la base
@@ -37,6 +40,7 @@ class CategoryController{
 
     function showAdminCategory(){
         $this->checkLog();
+        $this->adminCheckLog();
         $id = 0;
         $category = $this->model->getCategory();
         $edit = false;
@@ -45,6 +49,7 @@ class CategoryController{
 
     function updateCategory(){
         $this->checkLog();
+        $this->adminCheckLog();
         $id = $_POST['id'];
         $nombre = $_POST['nombre'];
         $this->model->editCategory($nombre, $id);
@@ -53,6 +58,7 @@ class CategoryController{
 
     function showEditCategory($params = null){
         $this->checkLog();
+        $this->adminCheckLog();
         $id = $params[':ID'];
         $category = $this->model->getCategory();
         $edit = true;
@@ -63,11 +69,16 @@ class CategoryController{
     function checkLog(){
         session_start();
         if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
-            || (isset($_SESSION['LAST_ACTIVITY']))){
-
+            && (isset($_SESSION['LAST_ACTIVITY']))){
             header("Location: ".BASE_URL."logout"); 
             die();
         }
     }
 
+    function adminCheckLog(){ 
+        if($_SESSION['USSER_ROLE'] == 0){
+            header("Location: ".BASE_URL."logout"); 
+            die();
+        }
+    }
 }

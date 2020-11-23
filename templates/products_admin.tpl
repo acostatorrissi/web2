@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="header_admin.tpl"} 
 {include file="admin_table.tpl"}
 
     {if $edit==true}
