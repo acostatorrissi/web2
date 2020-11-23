@@ -2,14 +2,13 @@
 
 <div class="container">
     
-    <div id="tabla-category"> <!--ver nombre - CSS -->   
-            
+    <div id="tabla-category"> 
         <table>
             <thead>
                 <th>{$titulo|upper}</th>
                 {foreach from=$ussers item=usser}
                     <tr>
-                        <td class='bold'>{$usser->nombre|upper}</td><!--</a>-->
+                        <td class='bold'>{$usser->nombre|upper}</td>
                         <td> 
                             <a href="deleteusser/{$usser->id}" class="btn btn-danger"> Eliminar Usuario </a> 
                             {if $usser->rol == 0}
@@ -22,9 +21,7 @@
                 {/foreach} 
             </thead>  
         </table>
-    </div>
-    
-    
+    </div>   
 </div>
 
 {include file="footer.tpl"}

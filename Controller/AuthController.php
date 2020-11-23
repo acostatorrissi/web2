@@ -19,15 +19,12 @@ class AuthController{
     }
 
     public function showUssers(){
-        $this->checklog();
         $this->adminCheckLog();
         $ussers = $this->model->getUsers();
         $this->view->showUssers($ussers);
-
     }
 
     public function deleteUsser($params = null){ //VER SI ES NECESARIO VOLVER A CHECKEAR SESION
-        $this->checkLog();
         $this->adminCheckLog();
         $id = $params[':ID'];
         $this->model->deleteUsser($id);
@@ -35,16 +32,14 @@ class AuthController{
     }
 
     public function setAdminRole($params = null){
-        $this->checkLog();
-        $this->adminCheckLog();
+        //$this->adminCheckLog();
         $id = $params[':ID'];
         $this->model->setAdminRole($id);
         $this->showUssers();
     }
 
     public function setBasicRole($params = null){
-        $this->checkLog();
-        $this->adminCheckLog();
+        //$this->adminCheckLog();
         $id = $params[':ID'];
         $this->model->setBasicRole($id);
         $this->showUssers();
@@ -96,7 +91,7 @@ class AuthController{
         $lastName = $_POST['lastName'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-
+        
         if(empty($name) || empty($lastName) || empty($email) || empty($password)){
             $error="Faltan datos obligatorios";
             $this->view->showRegisterPage($error);
@@ -105,21 +100,48 @@ class AuthController{
 
         $passwordEncrypted = password_hash($password, PASSWORD_DEFAULT);
         $this->model->registerNewUsser($name, $lastName, $email, $passwordEncrypted);  //VER ESTO PUEDE SER INSEGURO
-
-        $this->getUser($email, $password);
+        $this->getUser($email, $password); //no necesito verificar los datos porque acabo de registrar un usuario con los mismos
     }
-
+/*
     function checkLog(){
         session_start();
         if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
-            && (isset($_SESSION['LAST_ACTIVITY']))){
+            && (!isset($_SESSION['LAST_ACTIVITY']))){
             header("Location: ".BASE_URL."logout"); 
             die();
         }
     }
 
     function adminCheckLog(){ 
-        //session_start();
+        $this->checkLog();
+        if($_SESSION['USSER_ROLE'] == 0){
+            header("Location: ".BASE_URL."logout"); 
+            die();
+        }
+    }
+*/
+/*
+    function checkLog(){
+        session_start();
+        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
+            && (!isset($_SESSION['LAST_ACTIVITY']))){
+            header("Location: ".BASE_URL."logout"); 
+            die();
+        }
+    }
+*/
+    function adminCheckLog(){
+
+        $status = session_status();
+        if($status == PHP_SESSION_NONE){
+            //There is no active session
+            session_start();
+        }
+        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
+            && (!isset($_SESSION['LAST_ACTIVITY']))){
+            header("Location: ".BASE_URL."logout"); 
+            die();
+        }
         if($_SESSION['USSER_ROLE'] == 0){
             header("Location: ".BASE_URL."logout"); 
             die();

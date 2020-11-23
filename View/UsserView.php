@@ -23,7 +23,6 @@ class UsserView{
     function showRegisterPage($error = null){
         $smarty = new Smarty();
         $smarty->assign('error', $error);
-        $smarty->assign('titulo', $this->title = "Registro"); //ver si se usa
         $smarty->display('templates/register_form.tpl');
     }
 

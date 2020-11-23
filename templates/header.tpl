@@ -20,7 +20,7 @@
                     <button class="btn btn-check">{$smarty.session.USSER_EMAIL}</button>
             {else}
                 <a class="nav-link ml-auto" href="login">
-                    <button class="btn btn-check">Iniciar sesion</button>
+                    <button class="btn btn-check">Iniciar sesión</button>
             {/if}
                 </a>  
         </div>

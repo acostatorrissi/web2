@@ -19,10 +19,6 @@
       <label for="password">Password: </label>
       <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese el password">
     </div>
-    <div class="form-group">  
-      <label for="passwordRep">Repita el Password: </label>
-      <input type="password" class="form-control" id="passwordRep" name="passwordRep" placeholder="Repita el password">
-    </div>
     {if $error}
       <div class="alert alert-danger">
         {$error}

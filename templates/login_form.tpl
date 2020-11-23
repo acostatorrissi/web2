@@ -1,7 +1,6 @@
 {include file="header.tpl"}
 
 <div class="container">
-  
   <form method="POST" action="verify">
     <div class="form-group">
       <label for="email">Email: </label>
