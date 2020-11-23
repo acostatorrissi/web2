@@ -10,16 +10,12 @@
         function __construct(){
             parent::__construct();
             $this->model = new ComentModel();
-            $this->view = new APIView();
-        }
-
-        function getData(){
-            return json_decode($this->data);
         }
 
         public function getAll($params = null){
             $parametros = [];
 
+            //REVEER ESTO
             if(isset($_GET['sort'])){
                 $parametros['sort'] = $_GET['sort'];
             }
@@ -61,7 +57,7 @@
             $ranking = $body->ranking;
 
             //se lo mando al modelo
-            $id = $this->model->insert($text, $ranking);
+            $id = $this->model->add($text, $ranking);
             if($id > 0){
                 $this->$view->response($this->model->getComent($id), 200);
                 //generalmente cuando se hace insert en API devuelve la tarea
