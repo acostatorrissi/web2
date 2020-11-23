@@ -13,6 +13,13 @@ class UsserView{
         $smarty->display('templates/login_form.tpl');
     }
 
+    function showUssers($ussers){
+        $smarty = new Smarty();
+        $smarty->assign('titulo', $this->title = "Usuarios registrados");
+        $smarty->assign('ussers', $ussers);
+        $smarty->display('templates/show_ussers.tpl');
+    }
+
     function showRegisterPage($error = null){
         $smarty = new Smarty();
         $smarty->assign('error', $error);

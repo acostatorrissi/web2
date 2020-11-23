@@ -16,6 +16,10 @@
     $r->addRoute("logout", "GET", "AuthController", "logOut");
     $r->addRoute("register", "GET", "AuthController", "showRegisterPage");
     $r->addRoute("registerNewUsser", "POST", "AuthController", "registerNewUsser");
+    $r->addRoute("adminussers", "GET", "AuthController", "showUssers");
+    $r->addRoute("deleteusser/:ID", "GET", "AuthController", "deleteUsser");
+    $r->addRoute("setAdminRole/:ID", "GET", "AuthController", "setAdminRole");
+    $r->addRoute("setBasicRole/:ID", "GET", "AuthController", "setBasicRole");
 
     $r->addRoute("home", "GET", "ProductController", "showHome");
     $r->addRoute("company", "GET", "ProductController", "showCompany");

@@ -28,7 +28,7 @@
             <ul id="nav" >
                 <a href="admin"><li>ADMINISTRAR PRODUCTOS</li></a>
                 <a href="admincategory"><li>ADMINISTRAR CATEGORIAS</li></a>
-                <a href="adminusers"><li>ADMINISTRAR USUARIOS</li></a>
+                <a href="adminussers"><li>ADMINISTRAR USUARIOS</li></a>
             </ul>
         </div>
     </header>  
