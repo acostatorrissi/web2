@@ -63,7 +63,7 @@ class CategoryController{
     function checkLog(){
         session_start();
         if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
-            || (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 100000))){
+            || (isset($_SESSION['LAST_ACTIVITY']))){
 
             header("Location: ".BASE_URL."logout"); 
             die();
