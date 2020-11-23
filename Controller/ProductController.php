@@ -16,18 +16,20 @@ class ProductController{
     }
 
     function showProducts(){
-        
+        session_start();
         $products = $this->model->getProducts();   
         $this->view->showProducts($products); 
     }
 
     function showProductDetail($params = null){
+        session_start();
         $id = $params[':ID'];
         $product = $this->model->getProductById($id);
         $this->view->showProductDetail($product);
     }
 
     function showCategoryProducts($params = null){
+        session_start();
         $id = $params[':ID'];
         $catProducts = $this->model->getProductsFromCat($id);
         $this->view->showProductsFromCat($catProducts, $id);
@@ -35,6 +37,7 @@ class ProductController{
 
     function showAdminPage(){
         $this->checkLog();
+        $this->adminCheckLog();
         $this->modelCategory = new CategoryModel(); //ver preguntar en consulta
         $id = 0;
         $products = $this->model->getProducts();
@@ -44,15 +47,18 @@ class ProductController{
     }
 
     function showHome(){
+        session_start();
         $this->view->showHome();
     }
 
     function showCompany(){
+        session_start();
         $this->view->showCompany();
     }
 
     function insertProduct(){
         $this->checkLog();
+        $this->adminCheckLog();
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];
@@ -63,6 +69,7 @@ class ProductController{
 
     function deleteProduct($params = null){
         $this->checkLog();
+        $this->adminCheckLog();
         $id = $params[':ID'];
         $this->model->deleteProduct($id);
         header("Location: ".BASE_URL."admin");
@@ -70,6 +77,7 @@ class ProductController{
 
     function showAdminEditPage($params = null){
         $this->checkLog();
+        $this->adminCheckLog();
         $this->modelCategory = new CategoryModel();//ver preguntar en consulta
         $id = $params[':ID'];
         $products = $this->model->getProducts();
@@ -80,6 +88,7 @@ class ProductController{
 
     function updateProduct(){
         $this->checkLog();
+        $this->adminCheckLog();
         $id = $_POST['id']; 
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
@@ -93,11 +102,17 @@ class ProductController{
         session_start();
         if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
             && (isset($_SESSION['LAST_ACTIVITY']))){
-
             header("Location: ".BASE_URL."logout"); 
             die();
         }
     }
 
+    function adminCheckLog(){ 
+        //session_start();
+        if($_SESSION['USSER_ROLE'] == 0){
+            header("Location: ".BASE_URL."logout"); 
+            die();
+        }
+    }
 }
 

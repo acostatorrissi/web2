@@ -15,28 +15,20 @@
 <body>
     <header class="header dark">
         <div class="d-flex">
-            {if isset($smarty.session.USSER_EMAIL)}
-                <a class="nav-link ml-auto" href="logout">
-                    <button class="btn btn-check">{$smarty.session.USSER_EMAIL}</button>
-            {else}
-                <a class="nav-link ml-auto" href="login">
-                    <button class="btn btn-check">Iniciar sesion</button>
-            {/if}
-                </a>  
+            <a class="nav-link ml-auto" href="logout">
+                <button class="btn btn-check">{$smarty.session.USSER_EMAIL}</button>
+            </a> 
         </div>
 
         <div id="logo" >
-            <a {if isset($smarty.session.USSER_EMAIL)} href="admin" {else} href="home" {/if} id="logo-center">
-                <h1>|EL REFUGIO|</h1>
-                <div id="pie-logo">BAR SERRANO</div>
-            </a>
+            <h1>|EL REFUGIO|</h1>
+            <div id="pie-logo">BAR SERRANO</div>
         </div>
         <div class="navegador">
             <ul id="nav" >
-                <a href="home"><li>INICIO</li></a> 
-                <a href="company"><li>QUIENES SOMOS</li></a>
-                <a href="category"><li>CATEGORIAS</li></a>
-                <a href="carta"><li>NUESTRA CARTA</li></a>
+                <a href="admin"><li>ADMINISTRAR PRODUCTOS</li></a>
+                <a href="admincategory"><li>ADMINISTRAR CATEGORIAS</li></a>
+                <a href="adminusers"><li>ADMINISTRAR USUARIOS</li></a>
             </ul>
         </div>
     </header>  

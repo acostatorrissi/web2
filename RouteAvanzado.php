@@ -14,6 +14,8 @@
     $r->addRoute("login", "GET", "AuthController", "showLogin");
     $r->addRoute("verify", "POST", "AuthController", "verifyUsser");
     $r->addRoute("logout", "GET", "AuthController", "logOut");
+    $r->addRoute("register", "GET", "AuthController", "showRegisterPage");
+    $r->addRoute("registerNewUsser", "POST", "AuthController", "registerNewUsser");
 
     $r->addRoute("home", "GET", "ProductController", "showHome");
     $r->addRoute("company", "GET", "ProductController", "showCompany");

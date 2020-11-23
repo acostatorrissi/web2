@@ -14,4 +14,9 @@ class UsserModel{
         $usser = $query->fetch(PDO::FETCH_OBJ);
         return $usser;
     }
+
+    function registerNewUsser($name, $lastName, $email, $password){
+        $query = $this->db->prepare('INSERT INTO usser (nombre, apellido, email, password) VALUES (?,?,?,?)');
+        $query->execute([$name, $lastName, $email, $password]);
+    }
 }
