@@ -97,7 +97,7 @@ class AuthController{
         
         if(empty($name) || empty($lastName) || empty($email) || empty($password)){
             $error="Faltan datos obligatorios";
-            $this->view->showRegisterPage($error);
+            $this->view->showFormLogin($error);
             die();  
         }
 
