@@ -1,16 +1,21 @@
 <?php
 
     require_once "Model/ComentModel.php";
-    require_once "ApiController.php";
+    require_once "./api/ApiController.php";
 
     //falta hacer el model de comentarios
 
-    class ApiComentController extends ApiController{
+    class ComentController extends ApiController{
         
         function __construct(){
             parent::__construct();
             $this->model = new ComentModel();
         }
+
+        function ComentCSR($params = null){
+            $this->view->showComentCSR();
+        } //llama a la vista
+
 
         public function getAll($params = null){
             $parametros = [];
@@ -53,11 +58,13 @@
 
             //me hago de las valores de la variable que me trae el body
 
-            $text = $body->text;
+            $texto = $body->text;
             $ranking = $body->ranking;
+            $usser = $body->id_usser;
+            $producto = $body->id_producto;
 
             //se lo mando al modelo
-            $id = $this->model->add($text, $ranking);
+            $id = $this->model->add($texto, $ranking, $usser, $producto);
             if($id > 0){
                 $this->$view->response($this->model->getComent($id), 200);
                 //generalmente cuando se hace insert en API devuelve la tarea
@@ -65,27 +72,7 @@
                 $this->$view->response("No se pudo insertar el comentario con el id=$id no existe", 500);
             }
         }
-
-        public function update($params = null){
-            $idComent = $params[':ID'];
-            $body = $this->getData();
-     
-            $title = $body->title;
-            $text = $body->text;
-            $ranking = $body->ranking;
-
-            $coment = $this->model->getComent($idComent);
-            if(empty($coment)){
-                $this->$view->response("El comentario con el id=$idComent no existe", 404);
-            }else{
-                $success = $this->model->update($text, $ranking, $idComent);
-
-                if($success > 0){
-                    $this->$view->response($this->model->getComent($id), 200);
-                }else{
-                    $this->$view->response("El comentario con el id=$idComent no fue actualizado", 204);
-                }
-            }
-           
-        }
+    
     }
+
+   

@@ -2,6 +2,7 @@
     require_once 'Controller/AuthController.php';
     require_once 'Controller/ProductController.php';
     require_once 'Controller/CategoryController.php';
+    require_once 'Controller/ComentController.php';
     require_once 'View/UsserView.php';
     require_once 'View/ProductView.php';
     require_once 'View/CategoryView.php';
@@ -10,6 +11,8 @@
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
     $r = new Router();
+
+    $r->addRoute("coment-csr", "GET", "ComentController", "ComentCSR");
 
     $r->addRoute("login", "GET", "AuthController", "showLogin");
     $r->addRoute("verify", "POST", "AuthController", "verifyUsser");
