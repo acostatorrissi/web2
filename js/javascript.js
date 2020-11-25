@@ -1,55 +1,50 @@
-document.addEventListener("DOMContentLoadad", loadPage);
+"use strict";
+
+let app  = new Vue({
+    el: '#vue-comment',
+    data:{
+        comments: []
+    }
+})
+
+document.addEventListener("DOMContentLoadad", () =>{
+    getComents();
+
+    document.querySelector('comment-form').addEventListener('submit', e =>{
+        e.preventDefault(); //evita envio del form 
+        addComent();
+    })
+});
 
 function loadPage(){
-    "use strict";
-    let btnSuscribirse = document.querySelector("#btn-subs");
-
-    let btnVerificar = document.querySelector("#btn-check");
-
-    let acceso = document.querySelector("#acceso");
-
-    let inputCaptcha = document.querySelector("#inputCaptcha");
-
-    let showCaptcha = document.querySelector("#showCaptcha");
-
-    let captcha="";
-
-    let caracteres = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    btnSuscribirse.addEventListener("click", showFormCaptcha);
-
-    function showFormCaptcha(){
-        let formCaptcha = document.querySelectorAll(".formulario")[1];
-        formCaptcha.classList.remove("hidden");
-    } 
-
-    generarCaptcha();
-
-    showCaptcha.innerHTML = captcha;
+    
+    
+    function getComents(){
+        fetch('api/comentarios/')
+        .then(response => response.json())
+        .then(comentarios => render(comentarios))
+        .catch(error=> console.log(error));
+    }
 
 
-    btnVerificar.addEventListener("click", verificar);
 
+    function addComent(){
 
-    function verificar(){
-        if (showCaptcha.innerHTML == inputCaptcha.value){
-            acceso.innerHTML = "Tu suscripción se realizó con exito."
-            
-        }else{
-            acceso.innerHTML = "Ingreso erróneo, intente nuevamente"
-            generarCaptcha();
-            showCaptcha.innerHTML = captcha;
+        const coment = {
+            texto = document.querySelector('input[name="texto"]').value,
+            ranking = document.querySelector('input[name="ranking"]').value,
+            usser = document.querySelector('input[name="id_usser"]').value,
+            producto = document.querySelector('input[name="id_producto"]').value
+        }
         
-        }
-    }
+        fetch('api/comentarios',{
 
-    function generarCaptcha(){
-        captcha="";
-    
-        for ( let i = 1; i<=6; i++){
-            captcha += caracteres.charAt(Math.floor(Math.random()*caracteres.length)); 
-    
-        }
+            method: 'POST',
+            header: {'Content-type': "application/json"},
+            body: JSON.stringify(comentario)
+        })
+        .then(response => response.json())
+        .then(comentario => getComents())
+        .catch(error=> console.log(error));
     }
-
 }

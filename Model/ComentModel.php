@@ -22,9 +22,9 @@ class ComentModel{
         return $coment;
     }
 
-    function add($texto, $ranking){
-        $query = $this->db->prepare('INSERT INTO comentario (texto, ranking) VALUES (?,?)');
-        $query->execute([$texto, $ranking]);
+    function add($texto, $ranking, $id_usser, $id_producto){
+        $query = $this->db->prepare('INSERT INTO comentario (texto, ranking, $id_usser, $id_producto) VALUES (?,?,?,?)');
+        $query->execute([$texto, $ranking, $id_usser, $id_producto]);
         return $this->db->lastInsertId();
     }
 
@@ -35,9 +35,4 @@ class ComentModel{
         //cuantas filas toco, actualizo borro
     }
 
-    function update($texto, $ranking, $id){
-        $query = $this->db->prepare("UPDATE comentario SET texto=?, ranking=? WHERE id=?");
-        $query->execute([$texto, $ranking, $id]);
-        return $query->rowCount();
-    }
 }
