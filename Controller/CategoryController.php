@@ -8,22 +8,23 @@ class CategoryController{
 
     private $model;
     private $view;
+    private $helper;
 
     public function __construct(){
           //instancio el modelo y la vista en constructor para poder reutilizar variables
         $this->model = new CategoryModel();
-        $this->view = new CategoryView();  
+        $this->view = new CategoryView();
+        $this->helper = new AuthHelper();  
     }
 
     function showCategory(){
-        session_start();
+        $this->helper->startSession();
         $category = $this->model->getCategory();
         $this->view->showCategory($category);
     }
 
     function insertCategory(){
-        $this->checkLog();
-        $this->adminCheckLog();
+        $this->helper->adminCheckLog();
         $nombre = $_POST['nombre'];
         $urlImagen = $_POST['urlImagen'];
         $this->model->addCategory($nombre, $urlImagen);
@@ -31,16 +32,14 @@ class CategoryController{
     }
 
     function deleteCategory($params = null){
-        $this->checkLog();
-        $this->adminCheckLog();
+        $this->helper->adminCheckLog();
         $id = $params[':ID'];
         $this->model->deleteCategory($id);
         header("Location: ".BASE_URL."admincategory");//falta la base
     }
 
     function showAdminCategory(){
-        $this->checkLog();
-        $this->adminCheckLog();
+        $this->helper->adminCheckLog();
         $id = 0;
         $category = $this->model->getCategory();
         $edit = false;
@@ -48,8 +47,7 @@ class CategoryController{
     }
 
     function updateCategory(){
-        $this->checkLog();
-        $this->adminCheckLog();
+        $this->helper->adminCheckLog();
         $id = $_POST['id'];
         $nombre = $_POST['nombre'];
         $this->model->editCategory($nombre, $id);
@@ -57,28 +55,10 @@ class CategoryController{
     }
 
     function showEditCategory($params = null){
-        $this->checkLog();
-        $this->adminCheckLog();
+        $this->helper->adminCheckLog();
         $id = $params[':ID'];
         $category = $this->model->getCategory();
         $edit = true;
         $this->view->showAdminCategory($category, $edit, $id);
-    }
-
-    //verifica si el usuario esta loggeado.
-    function checkLog(){
-        session_start();
-        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
-            && (isset($_SESSION['LAST_ACTIVITY']))){
-            header("Location: ".BASE_URL."logout"); 
-            die();
-        }
-    }
-
-    function adminCheckLog(){ 
-        if($_SESSION['USSER_ROLE'] == 0){
-            header("Location: ".BASE_URL."logout"); 
-            die();
-        }
     }
 }

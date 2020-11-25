@@ -13,7 +13,7 @@
 
     $r->addRoute("login", "GET", "AuthController", "showLogin");
     $r->addRoute("verify", "POST", "AuthController", "verifyUsser");
-    $r->addRoute("logout", "GET", "AuthController", "logOut");
+    $r->addRoute("logout", "GET", "AuthController", "logOut"); // El helper se encarga de desloggear pero para no romper mvc..
     $r->addRoute("register", "GET", "AuthController", "showRegisterPage");//
     $r->addRoute("registerNewUsser", "POST", "AuthController", "registerNewUsser");//
     $r->addRoute("adminussers", "GET", "AuthController", "showUssers");//

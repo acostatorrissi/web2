@@ -2,16 +2,19 @@
 
 require_once './Model/UsserModel.php';
 require_once './View/UsserView.php';
+require_once './helper/AuthHelper.php';
 
 class AuthController{
 
     private $model;
     private $view;
+    private $helper;
 
     public function __construct(){
          
         $this->model = new UsserModel();
         $this->view = new UsserView();  
+        $this->helper = new AuthHelper();
     }
 
     public function showLogin(){
@@ -19,27 +22,27 @@ class AuthController{
     }
 
     public function showUssers(){
-        $this->adminCheckLog();
+        $this->helper->adminCheckLog();
         $ussers = $this->model->getUsers();
         $this->view->showUssers($ussers);
     }
 
     public function deleteUsser($params = null){ //VER SI ES NECESARIO VOLVER A CHECKEAR SESION
-        $this->adminCheckLog();
+        $this->helper->adminCheckLog();
         $id = $params[':ID'];
         $this->model->deleteUsser($id);
         $this->showUssers();
     }
 
     public function setAdminRole($params = null){
-        //$this->adminCheckLog();
+        $this->helper->adminCheckLog();
         $id = $params[':ID'];
         $this->model->setAdminRole($id);
         $this->showUssers();
     }
 
     public function setBasicRole($params = null){
-        //$this->adminCheckLog();
+        $this->helper->adminCheckLog();
         $id = $params[':ID'];
         $this->model->setBasicRole($id);
         $this->showUssers();
@@ -62,7 +65,7 @@ class AuthController{
         $usser = $this->model->getUsser($email);
         if($usser && (password_verify($password, $usser->password))){
             
-            session_start();
+           $this->helper->startSession(); // ver
            
             $_SESSION['USSER_ID'] = $usser->id;
             $_SESSION['USSER_EMAIL'] = $usser->email;
@@ -102,57 +105,9 @@ class AuthController{
         $this->model->registerNewUsser($name, $lastName, $email, $passwordEncrypted);  //VER ESTO PUEDE SER INSEGURO
         $this->getUser($email, $password); //no necesito verificar los datos porque acabo de registrar un usuario con los mismos
     }
-/*
-    function checkLog(){
-        session_start();
-        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
-            && (!isset($_SESSION['LAST_ACTIVITY']))){
-            header("Location: ".BASE_URL."logout"); 
-            die();
-        }
-    }
-
-    function adminCheckLog(){ 
-        $this->checkLog();
-        if($_SESSION['USSER_ROLE'] == 0){
-            header("Location: ".BASE_URL."logout"); 
-            die();
-        }
-    }
-*/
-/*
-    function checkLog(){
-        session_start();
-        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
-            && (!isset($_SESSION['LAST_ACTIVITY']))){
-            header("Location: ".BASE_URL."logout"); 
-            die();
-        }
-    }
-*/
-    function adminCheckLog(){
-
-        $status = session_status();
-        if($status == PHP_SESSION_NONE){
-            //There is no active session
-            session_start();
-        }
-        if(!isset($_SESSION['USSER_ID']) || !isset($_SESSION['USSER_EMAIL']) 
-            && (!isset($_SESSION['LAST_ACTIVITY']))){
-            header("Location: ".BASE_URL."logout"); 
-            die();
-        }
-        if($_SESSION['USSER_ROLE'] == 0){
-            header("Location: ".BASE_URL."logout"); 
-            die();
-        }
-    }
 
     public function logOut(){
-        session_start();
-        session_destroy();
-        header("Location: ".BASE_URL."login");
-        die();
+        $this->helper->logOut();
     }
-    
+
 }
