@@ -1,15 +1,7 @@
 {assign var="pages" value="0"}
 {include file="header.tpl"}
        
-       <div class="container">    
-            <form action="carta" method="GET">
-                <div class="form-group">
-                    <label for="productsNumber">Cantidad de productos por página</label>
-                    <input type="number" class="form-control" id="productsNumber" name="productsNumber">
-                </div>
-                <button type="submit" class="btn btn-primary">Mostrar</button>
-            </form>
-
+       <div class="container">  
             <table id="tablaComida">
                 <thead>
                     <th>{$titulo|upper}</th>
@@ -29,13 +21,14 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     {for $pagin = 1 to $totalPaginas}
-                        <li class="page-item"><a class="page-link black" href="carta/{$pagin}">{$pagin}</a></li>
+                        <li class="page-item
+                            {if ($pagina+1)==$pagin}
+                                active
+                            {/if}
+                        "><a class="page-link black" href="carta/{$pagin}">{$pagin}</a></li>
                     {/for}
                 </ul>
             </nav>
-            
-             <h3> Número de productos encontrados {$totalRegistros} </h3>
-             <h3> Se muestran paginas de {$tamanioPagina} productos cada una</h3>
         </div>
     
 {include file="footer.tpl"}

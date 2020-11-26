@@ -105,18 +105,12 @@ class ProductController{
         }else{
             $pagina = 0;
         }
-
-        if(isset($_GET['productsNumber'])){
-            $tamanio_pagina = $_GET['productsNumber'];
-        }else{
-            $tamanio_pagina = 3;
-        }
-
+        $tamanio_pagina = 3;
         $num_total_registros = count($this->model->getProducts());
         $total_paginas = ceil($num_total_registros / $tamanio_pagina);
         $var = ($pagina * $tamanio_pagina);
         $products = $this->model->getProductsByPage($var, $tamanio_pagina);
-        $this->view->showProductsByPage($products, $num_total_registros, $pagina, $tamanio_pagina, $total_paginas);
+        $this->view->showProductsByPage($products, $num_total_registros, $pagina, $tamanio_pagina, $total_paginas); //ver que se usa y q no
     }
 }
 
