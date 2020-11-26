@@ -50,5 +50,22 @@ class ProductModel{   //BINDEAR TODO
         $query = $this->db->prepare("UPDATE producto SET descripcion=?, id_categoria=?, nombre=?,  precio=? WHERE id=?");
         $query->execute([$descripcion, $id_categoria, $nombre, $precio, $id]);
     }
+
+    //probando paginacion
+
+    function getProductsByPage($pagina, $tamanio_pagina){
+        $query = $this->db->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria LIMIT $pagina, $tamanio_pagina");
+        $query->execute([]);
+        $products = $query->fetchAll(PDO::FETCH_OBJ);
+        return $products;
+    }
+
+    function getProductsQuantity(){
+        $query = $this->db->prepare('SELECT COUNT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria');
+        $query->execute();
+        $products = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return count($products);
+    }
 }
 

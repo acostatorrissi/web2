@@ -12,6 +12,16 @@ class ProductView{
         $smarty->assign('titulo', $this->title = "nuestra carta");
         $smarty->display('templates/products.tpl');
     }
+    
+    //ver de borrar
+    function showProductsByQuantity($products, $quantity)
+    {
+        $smarty = new Smarty();
+        $smarty->assign('productos', $products);
+        $smarty->assign('titulo', $this->title = "nuestra carta");
+        $smarty->assign('cantidad', $cantidad);
+        $smarty->display('templates/productsq.tpl');
+    }
 
     function showProductDetail($product){
         $smarty = new Smarty();
@@ -45,6 +55,19 @@ class ProductView{
     function showCompany(){
         $smarty = new Smarty();
         $smarty->display('templates/company.tpl'); 
+    }
+
+    //prueba paginacion
+
+    function showProductsByPage($products, $totalRegistros, $pagina, $tamanioPagina, $totalPaginas){
+        $smarty = new Smarty();
+        $smarty->assign('productos', $products);
+        $smarty->assign('totalRegistros', $totalRegistros);
+        $smarty->assign('titulo', $this->title = "nuestra carta");
+        $smarty->assign('tamanioPagina', $tamanioPagina);
+        $smarty->assign('totalPaginas', $totalPaginas);
+        $smarty->assign('pagina', $pagina);
+        $smarty->display('templates/productsq.tpl');
     }
 }
 

@@ -27,7 +27,11 @@
     $r->addRoute("home", "GET", "ProductController", "showHome");
     $r->addRoute("company", "GET", "ProductController", "showCompany");
     $r->addRoute("delete/:ID", "GET", "ProductController", "deleteProduct");
-    $r->addRoute("carta", "GET", "ProductController", "showProducts");
+    
+    $r->addRoute("carta", "GET", "ProductController", "getProductsByPage");
+    $r->addRoute("carta/:PAGINA", "GET", "ProductController", "getProductsByPage");//probando paginacion
+    //$r->addRoute("productsNumber", "GET", "ProductController", "getProductsByPage")
+
     $r->addRoute("admin", "GET", "ProductController", "showAdminPage");
     $r->addRoute("insert", "POST", "ProductController", "insertProduct");
     $r->addRoute("edit/:ID", "GET", "ProductController", "showAdminEditPage");

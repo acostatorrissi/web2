@@ -94,5 +94,29 @@ class ProductController{
         $this->model->updateProduct($id, $nombre, $descripcion, $precio, $id_categoria);
         header("Location: ".BASE_URL."admin");
     }
+
+    //prueba paginacion
+
+    function getProductsByPage($params = null){
+        $this->helper->startSession();
+        
+        if(isset($params[':PAGINA'])){
+            $pagina = ($params[':PAGINA'] - 1);
+        }else{
+            $pagina = 0;
+        }
+
+        if(isset($_GET['productsNumber'])){
+            $tamanio_pagina = $_GET['productsNumber'];
+        }else{
+            $tamanio_pagina = 3;
+        }
+
+        $num_total_registros = count($this->model->getProducts());
+        $total_paginas = ceil($num_total_registros / $tamanio_pagina);
+        $var = ($pagina * $tamanio_pagina);
+        $products = $this->model->getProductsByPage($var, $tamanio_pagina);
+        $this->view->showProductsByPage($products, $num_total_registros, $pagina, $tamanio_pagina, $total_paginas);
+    }
 }
 
