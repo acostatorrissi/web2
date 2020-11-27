@@ -20,6 +20,11 @@
         <div class="container">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link black" href="carta/{$pagina}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
                     {for $pagin = 1 to $totalPaginas}
                         <li class="page-item
                             {if ($pagina+1)==$pagin}
@@ -27,6 +32,11 @@
                             {/if}
                         "><a class="page-link black" href="carta/{$pagin}">{$pagin}</a></li>
                     {/for}
+                     <li class="page-item">
+                        <a class="page-link black" href="carta/{$pagina+2}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>

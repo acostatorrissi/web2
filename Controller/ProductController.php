@@ -100,14 +100,25 @@ class ProductController{
     function getProductsByPage($params = null){
         $this->helper->startSession();
         
-        if(isset($params[':PAGINA'])){
-            $pagina = ($params[':PAGINA'] - 1);
-        }else{
-            $pagina = 0;
-        }
         $tamanio_pagina = 3;
         $num_total_registros = count($this->model->getProducts());
         $total_paginas = ceil($num_total_registros / $tamanio_pagina);
+
+        if(isset($params[':PAGINA'])){
+            $pagina = ($params[':PAGINA'] - 1);
+
+            if($params[':PAGINA'] < 1){
+                $pagina = 0;
+            }
+
+            if($params[':PAGINA'] > $total_paginas){
+                $pagina = $total_paginas-1;
+            }
+
+        }else{
+            $pagina = 0;
+        }
+       
         $var = ($pagina * $tamanio_pagina);
         $products = $this->model->getProductsByPage($var, $tamanio_pagina);
         $this->view->showProductsByPage($products, $num_total_registros, $pagina, $tamanio_pagina, $total_paginas); //ver que se usa y q no
