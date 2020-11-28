@@ -1,15 +1,16 @@
 <?php
 
     require_once 'RouterClass.php';
-    require_once 'api/ComentController.php'
+    require_once './api/ApiController.php'
 
 
     $r = new Router();
 
-    $r->addRoute("comentarios", "GET", "ComentController", "getAll");
-    $r->addRoute("comentarios/:ID", "GET", "ComentController", "getComent");
-    $r->addRoute("comentarios/:ID", "DELETE", "ComentController", "delete");
-    $r->addRoute("comentarios", "POST", "ComentController", "add");
-    $r->addRoute("comentarios/:ID", "PUT", "ComentController", "update");
+    $r->addRoute("comments", "GET", "ApiController", "getAll");
+    $r->addRoute("comments/:ID", "GET", "ApiController", "getComment");
+    $r->addRoute("productComments/:ID", "GET", "ApiController", "getCommentsOfProduct");
+    $r->addRoute("comments/:ID", "DELETE", "ApiController", "delete");
+    $r->addRoute("comments", "POST", "ApiController", "add");
+    $r->addRoute("comments/:ID", "PUT", "ApiController", "update");
 
     $r->route($_REQUEST['resource'], $_SERVER['REQUEST_METHOD']);

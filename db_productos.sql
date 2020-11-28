@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2020 a las 18:00:55
--- Versión del servidor: 10.4.13-MariaDB
--- Versión de PHP: 7.4.7
+-- Tiempo de generación: 28-11-2020 a las 17:52:57
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,6 +40,31 @@ CREATE TABLE `categoria` (
 INSERT INTO `categoria` (`id_categoria`, `nombre`, `url_imagen`) VALUES
 (1, 'BEBIDAS', 'https://i.ibb.co/BPTw7GB/beer.jpg'),
 (2, 'COMIDAS', 'https://i.ibb.co/rp1DKz6/bbq.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id` int(50) NOT NULL,
+  `texto` text NOT NULL,
+  `ranking` int(1) NOT NULL,
+  `id_usser` int(50) NOT NULL,
+  `id_producto` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id`, `texto`, `ranking`, `id_usser`, `id_producto`) VALUES
+(1, 'Estaba muy rica', 4, 1, 12),
+(2, 'No fue lo mejor que probe', 3, 2, 5),
+(3, 'Espumosa!!', 5, 1, 11),
+(4, 'Buenardooo', 5, 2, 4),
+(5, 'Para chuparse los dedos', 4, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -85,16 +110,17 @@ CREATE TABLE `usser` (
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `rol` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usser`
 --
 
-INSERT INTO `usser` (`id`, `nombre`, `apellido`, `email`, `password`) VALUES
-(1, 'marcos', 'acosta', 'marcos.acosta.em@gmail.com', '$2y$12$fRyUKnqSyxE/ahohscaJL.GPYd0aMG2IvphlPKQggERm1BhYIuwW6'),
-(2, 'rosario', 'perrotta', 'rosarioperrotta7@gmail.com', '$2y$12$Wc4.IkZHZxIpYMu9sue8LOzOEnDIwKsVce16jSo4KjNAkWQkFDWEe');
+INSERT INTO `usser` (`id`, `nombre`, `apellido`, `email`, `password`, `rol`) VALUES
+(1, 'marcos', 'acosta', 'marcos.acosta.em@gmail.com', '$2y$12$fRyUKnqSyxE/ahohscaJL.GPYd0aMG2IvphlPKQggERm1BhYIuwW6', 0),
+(2, 'rosario', 'perrotta', 'rosarioperrotta7@gmail.com', '$2y$12$Wc4.IkZHZxIpYMu9sue8LOzOEnDIwKsVce16jSo4KjNAkWQkFDWEe', 0);
 
 --
 -- Índices para tablas volcadas
@@ -105,6 +131,14 @@ INSERT INTO `usser` (`id`, `nombre`, `apellido`, `email`, `password`) VALUES
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usser` (`id_usser`),
+  ADD KEY `id_producto` (`id_producto`);
 
 --
 -- Indices de la tabla `producto`
@@ -130,6 +164,12 @@ ALTER TABLE `categoria`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
@@ -144,6 +184,13 @@ ALTER TABLE `usser`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_usser`) REFERENCES `usser` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`

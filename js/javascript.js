@@ -1,44 +1,58 @@
-"use strict";
+"use strict"
 
-let app  = new Vue({
+const app  = new Vue({
     el: '#vue-comment',
     data:{
-        comments: []
+        comments: [],
+        commentsLength: 0,
+        admin: 1
+    },
+    methods:{
+        
     }
-})
-
-document.addEventListener("DOMContentLoadad", () =>{
-    getComents();
-
-    document.querySelector('comment-form').addEventListener('submit', e =>{
-        e.preventDefault(); //evita envio del form 
-        addComent();
-    })
 });
 
 function loadPage(){
-    
+
+    document.querySelector('comment-form').addEventListener('submit', addComent);
     
     function getComents(){
-        fetch('api/comentarios/')
+        fetch('api/comments/' + id_producto)
         .then(response => response.json())
-        .then(comentarios => render(comentarios))
+        .then(response =>{
+            app.comments = response;
+            app.commentsLength = response.length;
+        })
         .catch(error=> console.log(error));
     }
 
+    /*
+    function deleteComment($id){
+        fetch('api/comments/' + id, {method: "DELETE"})
+        .then(response=>{
+            if(!response.ok);
 
+            return response.json();
+        })
+        .then(response =>{
+            deleteCommentById($id);
+            app.commentsLength = app.comments.length;
+        })
+    }
 
+ 
     function addComent(){
+
+        e.preventDefault();
 
         const coment = {
             texto = document.querySelector('input[name="texto"]').value,
             ranking = document.querySelector('input[name="ranking"]').value,
-            usser = document.querySelector('input[name="id_usser"]').value,
-            producto = document.querySelector('input[name="id_producto"]').value
+            id_usser = document.querySelector('input[name="id_usser"]').value,
+            id_producto = document.querySelector('input[name="id_producto"]').value
         }
         
-        fetch('api/comentarios',{
-
+        fetch('api/comments',{
             method: 'POST',
             header: {'Content-type': "application/json"},
             body: JSON.stringify(comentario)
@@ -47,4 +61,6 @@ function loadPage(){
         .then(comentario => getComents())
         .catch(error=> console.log(error));
     }
+
+*/
 }

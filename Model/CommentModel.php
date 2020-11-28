@@ -1,6 +1,6 @@
 <?php
 
-class ComentModel{
+class CommentModel{
 
     private $db;
 
@@ -14,7 +14,7 @@ class ComentModel{
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getComent($id){
+    function getComment($id){
         $query = $this->db->prepare('SELECT * FROM comentario WHERE id=?');
         $query->execute([$id]);
         $coment = $query->fetch(PDO::FETCH_OBJ);
@@ -28,11 +28,17 @@ class ComentModel{
         return $this->db->lastInsertId();
     }
 
-    function delete($coment_id){
+    function delete($id){
         $query = $this->db->prepare('DELETE * FROM comentario WHERE id=?');
         $query->execute([$id]);
         return $query->rowCount();
         //cuantas filas toco, actualizo borro
+    }
+
+    function getCommentsOfProduct($id_producto){
+        $query = $this->db->prepare('SELECT comentario.*, usser.email AS email_usser FROM comentario INNER JOIN usser ON comentario.id_usser = usser.id WHERE id_producto=?');
+        $query->execute(array($id_producto));
+        return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
 }

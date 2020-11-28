@@ -40,13 +40,14 @@
             </div>
             
         </div>
-
-        <div class="col-md-8">
-
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {include file="./vue/comentarios.vue"}
+            </div>
         </div>
-       
 
     </div>
-
-
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="../js/javascript.js"></script>
 {include file="footer.tpl"}

@@ -1,6 +1,6 @@
 <?php
 
-    require_once "Model/ComentModel.php";
+    require_once "Model/CommentModel.php";
     require_once "./api/ApiController.php";
 
     //falta hacer el model de comentarios
