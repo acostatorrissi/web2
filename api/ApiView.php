@@ -6,10 +6,10 @@
          Responde cualquier coleccion de objetos en formato JSON.
         */
 
-        public function response($data){
+        public function response($data, $status){
             header("Content-Type: application/json");
-            header("HTTP/1.1 " .$status . " " . $this->requestStatus($status));
-            json_encode($data);
+            header("HTTP/1.1 " .$status." ". $this->requestStatus($status));
+            echo json_encode($data);
         }
 
         /*
