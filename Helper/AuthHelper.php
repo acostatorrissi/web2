@@ -25,7 +25,7 @@ class AuthHelper{
          if($_SESSION['USSER_ROLE'] == 0){
              header("Location: ".BASE_URL."logout"); 
              die();
-         }
+        }
     }
     
     public function logOut(){

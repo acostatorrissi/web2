@@ -14,7 +14,7 @@
         <div class="row justify-content-center">
             <h3>Comentarios</h3>
             <div class="py-5 offset-1 col-lg-10">
-                <form method="POST" id="comment-form" >
+                <form method="POST" id="comment-form" data-id-product = {$product->id}>
                     
                     <div class="form-group col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
                         <textarea  class="form-control" rows="3" cols="50" name="texto"></textarea>

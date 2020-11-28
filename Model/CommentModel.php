@@ -8,17 +8,19 @@ class CommentModel{
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_productos;charset=utf8','root','');
     }
 
-    function getAll(){
-        $query = $this->db->prepare('SELECT * FROM comentario');
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_OBJ);
-    }
 
     function getComment($id){
+        $query = $this->db->prepare('SELECT * FROM comentario WHERE id_producto=?');
+        $query->execute([$id]);
+        $coment = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $coment;
+    }
+
+    function commentById($id){
         $query = $this->db->prepare('SELECT * FROM comentario WHERE id=?');
         $query->execute([$id]);
         $coment = $query->fetch(PDO::FETCH_OBJ);
-
         return $coment;
     }
 
@@ -35,10 +37,12 @@ class CommentModel{
         //cuantas filas toco, actualizo borro
     }
 
+    /*
     function getCommentsOfProduct($id_producto){
         $query = $this->db->prepare('SELECT comentario.*, usser.email AS email_usser FROM comentario INNER JOIN usser ON comentario.id_usser = usser.id WHERE id_producto=?');
         $query->execute(array($id_producto));
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+    */
 
 }

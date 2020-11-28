@@ -4,7 +4,6 @@ const app  = new Vue({
     el: '#vue-comment',
     data:{
         comments: [],
-        commentsLength: 0,
         admin: 1
     },
     methods:{
@@ -13,20 +12,20 @@ const app  = new Vue({
 });
 
 function loadPage(){
+    
+    getComents();
 
     document.querySelector('comment-form').addEventListener('submit', addComent);
     
     function getComents(){
-        fetch('api/comments/' + id_producto)
+        let id = document.querySelector('#comment-form').getAttribute('data-id-product');
+        fetch('api/comments/' + id)
         .then(response => response.json())
-        .then(response =>{
-            app.comments = response;
-            app.commentsLength = response.length;
-        })
+        .then(comentarios => app.comments = comentarios)
         .catch(error=> console.log(error));
     }
 
-    /*
+    
     function deleteComment($id){
         fetch('api/comments/' + id, {method: "DELETE"})
         .then(response=>{
@@ -62,5 +61,5 @@ function loadPage(){
         .catch(error=> console.log(error));
     }
 
-*/
+
 }
