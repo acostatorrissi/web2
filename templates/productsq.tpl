@@ -1,7 +1,17 @@
 {assign var="pages" value="0"}
 {include file="header.tpl"}
        
-       <div class="container">  
+        <div class="container-fluid col-md-3 offset-md-4 row justify-content-center">
+            <form action="carta" method="GET">
+                <div class="form-group">
+                    <label>Búsqueda: </label>
+                    <input name="criterio" class="form-control" type="text" required>
+                </div>
+                <button id="btn-agregar-item" class="btn btn-check">Buscar</button>   
+            </form>
+        </div>
+
+        <div class="container">  
             <table id="tablaComida">
                 <thead>
                     <th>{$titulo|upper}</th>
@@ -20,11 +30,12 @@
         <div class="container">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link black" href="carta/{$pagina}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
+                    {if $totalPaginas > 1}
+                        <li class="page-item">
+                            <a class="page-link black" href="carta/{$pagina}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
                     {for $pagin = 1 to $totalPaginas}
                         <li class="page-item
                             {if ($pagina+1)==$pagin}
@@ -32,11 +43,14 @@
                             {/if}
                         "><a class="page-link black" href="carta/{$pagin}">{$pagin}</a></li>
                     {/for}
-                     <li class="page-item">
+                    <li class="page-item">
                         <a class="page-link black" href="carta/{$pagina+2}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
+                    {else if $totalPaginas==0}
+                        <h2> Su búsqueda no arrojó resultados, intente con "Bondiola" o "Cerveza" </h2>
+                    {/if}
                 </ul>
             </nav>
         </div>
