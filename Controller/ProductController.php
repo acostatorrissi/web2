@@ -99,10 +99,11 @@ class ProductController{
 
     function getProductsByPage($params = null){
         $this->helper->startSession();
-        
+        $criterio = ""; // ver
         $tamanio_pagina = 3;
-        $num_total_registros = count($this->model->getProducts());
+        $num_total_registros = count($this->model->getProducts($criterio));
         $total_paginas = ceil($num_total_registros / $tamanio_pagina);
+       
 
         if(isset($params[':PAGINA'])){
             $pagina = ($params[':PAGINA'] - 1);
@@ -118,9 +119,15 @@ class ProductController{
         }else{
             $pagina = 0;
         }
+        
+        if(isset($_GET['criterio'])){
+            $criterio = " WHERE descripcion LIKE '%".$_GET['criterio']."%'";
+            $num_total_registros = count($this->model->getProducts($criterio));
+            $total_paginas = ceil($num_total_registros / $tamanio_pagina);
+        }
        
         $var = ($pagina * $tamanio_pagina);
-        $products = $this->model->getProductsByPage($var, $tamanio_pagina);
+        $products = $this->model->getProductsByPage($var, $tamanio_pagina, $criterio);
         $this->view->showProductsByPage($products, $num_total_registros, $pagina, $tamanio_pagina, $total_paginas); //ver que se usa y q no
     }
 }

@@ -9,10 +9,10 @@ class ProductModel{   //BINDEAR TODO
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_productos;charset=utf8','root','');
     }
 
-    function getProducts(){
+    function getProducts($criterio){
 
         //obtiene los productos de la bbdd
-        $query = $this->db->prepare('SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria');
+        $query = $this->db->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria $criterio");
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_OBJ);
     
@@ -53,8 +53,8 @@ class ProductModel{   //BINDEAR TODO
 
     //probando paginacion
 
-    function getProductsByPage($pagina, $tamanio_pagina){
-        $query = $this->db->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria LIMIT $pagina, $tamanio_pagina");
+    function getProductsByPage($pagina, $tamanio_pagina, $criterio){
+        $query = $this->db->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria $criterio LIMIT $pagina, $tamanio_pagina");
         $query->execute([]);
         $products = $query->fetchAll(PDO::FETCH_OBJ);
         return $products;
