@@ -1,7 +1,7 @@
 {assign var="pages" value="0"}
 {include file="header.tpl"}
        
-        <div class="container-fluid col-md-4 offset-md-4">
+        <div class="container-fluid col-md-3 offset-md-4 row justify-content-center">
             <form action="carta" method="GET">
                 <div class="form-group">
                     <label>Búsqueda: </label>
