@@ -2,7 +2,7 @@
     require_once 'Controller/AuthController.php';
     require_once 'Controller/ProductController.php';
     require_once 'Controller/CategoryController.php';
-    require_once 'Controller/ComentController.php';
+    
     require_once 'View/UsserView.php';
     require_once 'View/ProductView.php';
     require_once 'View/CategoryView.php';

@@ -35,4 +35,19 @@ class AuthHelper{
         die();
     }
 
+    public function sessionData($usser){
+        $this->startSession();
+        $_SESSION['USSER_ID'] = $usser->id;
+        $_SESSION['USSER_EMAIL'] = $usser->email;
+        $_SESSION['USSER_ROLE'] = $usser->rol; // ver esto
+    }
+
+    function isLoggedIn(){
+        if(isset($_SESSION['USSER_ID'])){
+            return $_SESSION;
+        }else{
+            return false;
+        }
+    }
+
 }

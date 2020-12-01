@@ -18,12 +18,8 @@
             $this->helper = new AuthHelper();
         }
 
-        /*
-        function ComentCSR($params = null){
-            $this->view->showComentCSR();
-        } //llama a la vista
-        */
 
+        /*
         public function getComment($params = null){ //bien
             $id = $params[':ID'];
             $product = $this->productModel->getProductById($id);
@@ -37,19 +33,26 @@
                 $this->view->response($comment, 200);
             }
         }
+        */
 
+        public function getComment($params=null){
+            $id = $params[':ID'];
+            $comments = $this->model->getCommentsOfProduct($id);
+            if($comments || sizeof($comments) == 0){
+                $this->view->response($comments, 200);
+            }else{
+                $this->view->response("No se pudieron cargar los comentarios", 404);
+            }
+        }
 
         public function delete($params = null){ //bien
-            $this->helper->adminCheckLog();
             $id = $params[':ID'];
-
             $success = $this->model->delete($id);
-            if($success > 0){
+            if($success > 0 ){
                 $this->view->response("El comentario con el id=$id se borro exitosamente", 200);
             }else{
                 $this->view->response("El comentario con el id=$id no existe", 404);
             }
-           
         }
 
         public function add(){ //bien

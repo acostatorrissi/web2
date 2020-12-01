@@ -65,12 +65,12 @@ class AuthController{
         $usser = $this->model->getUsser($email);
         if($usser && (password_verify($password, $usser->password))){
             
-           $this->helper->startSession(); // ver
+           $this->helper->startSession();
+           $this->helper->sessionData($usser); 
            
-            $_SESSION['USSER_ID'] = $usser->id;
-            $_SESSION['USSER_EMAIL'] = $usser->email;
-            $_SESSION['USSER_ROLE'] = $usser->rol; // ver esto
-            $_SESSION['LAST_ACTIVITY'] = time();
+            //$_SESSION['USSER_ID'] = $usser->id;
+            //$_SESSION['USSER_EMAIL'] = $usser->email;
+            //$_SESSION['USSER_ROLE'] = $usser->rol; // ver esto
 
             if($usser->rol == 0){
                 header("Location: ".BASE_URL."carta");//ver esto

@@ -1,31 +1,43 @@
-
 {literal}
-<div class ="vue-comment">
-    <div class="container-fluid">
-        <ul>
-            <li class="li-comment" v-for="comment in comments" >
+<div id="app-comments">
+    <div class="container-fluid mt-20">
+        <ul class="d-flex justify-content-center row">
+            <h6>Comentarios</h6>
+
+            <div class="li-comment" v-for="comment in comments">
                 <div class="row">
-                    <div class="offset-1 col-10">
-                        <div>
+                    <div class="offset-1 col-12">
+                        <div class="card col-12 bg">
                             <div class="row card-header">
-                                <div class="col-5 text-left">
-                                    <span>{{comment.ranking}}<i class="fas fa-star"></i></span>
-                                </div>
+                                    
+                                    <div class="col-12 text-left">
+                                        <span>{{comment.ranking}} <i class="fas fa-star"></i></span>
+                                    </div>
+                                    <div class="col-10 text-right" v-if="admin">
+                                        <i v-on:click="deleteComment($event)" class="far fa-trash-alt btn-delete black" :id="comment.id"> </i>
+                                    </div>
+                                    <div class="col-10 text-right">
+                                        <span>{{comment.email_usser}}</span>
+                                    </div>
                             </div>
-                            <div class="card-body cuerpo-comment">
-                                <blockquote class="blockquote mb-0">
-                                <p>{{comment.id_usser}}</p>
-                                <footer class="blockquote-footer">{{comment.texto}}</footer>
-                                </blockquote>
+                            <div class="d-flex flex-row comment-user justify-content-between">
+
+                                <div class="ml-2">
+                                    <div class="mt-2">
+                                        <p class="comment-text">{{comment.texto}}</p>
+                                    </div>
+                                </div>
+                        
                             </div>
                         </div>
+                       
                     </div>
-                <div class="row">
-                <div class="offset-1 col-10">
-                    <span v-if="admin == 1"><a v-on:click="del(comment.id)" :data-id="comment.id" class="btn-eliminar"><i class="fas fa-trash-alt"></i></a></span>
                 </div>
-            </li>
+            </div>
         </ul>
     </div>
 </div>
 {/literal}
+
+
+        

@@ -23,9 +23,10 @@ class ProductView{
         $smarty->display('templates/productsq.tpl');
     }
 
-    function showProductDetail($product){
+    function showProductDetail($product, $usser){
         $smarty = new Smarty();
         $smarty->assign('producto', $product);
+        $smarty->assign('usser', $usser);
         $smarty->display('templates/product_detail.tpl');
     }
 

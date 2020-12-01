@@ -27,7 +27,8 @@ class ProductController{
         $this->helper->startSession();
         $id = $params[':ID'];
         $product = $this->model->getProductById($id);
-        $this->view->showProductDetail($product);
+        $usser = $this->helper->isLoggedIn();
+        $this->view->showProductDetail($product, $usser);
     }
 
     function showCategoryProducts($params = null){
