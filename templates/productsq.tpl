@@ -21,7 +21,7 @@
                         <td class="bold">{$producto->nombre|upper}</td>
                         <td>{$producto->descripcion}</td>
                         <td>${$producto->precio}</td>
-                        <td><a class="black" href="product/{$producto->id}">Conocelo!</a></td>
+                        <td><a class="black" href="product/{$producto->id}"><img src="{$producto->imagen}" class="rounded float-left" width="100" height="100"></a></td>
                         <td><a class="black" href="category/{$producto->id_categoria}">{$producto->categoria_nombre}</a></td>
                     </tr>
                 {/foreach}  

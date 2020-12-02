@@ -36,9 +36,20 @@ class ProductModel{   //BINDEAR TODO
         return $products;
     }
 
-    function addProducts($nombre, $descripcion, $precio, $id_categoria){
-        $query = $this->db->prepare('INSERT INTO producto (descripcion, id_categoria, nombre, precio) VALUES (?,?,?,?)');
-        $query->execute([$descripcion, $id_categoria, $nombre, $precio]);
+    function addProducts($nombre, $descripcion, $precio, $id_categoria, $imagen = null){
+
+        if ($imagen){
+            $pathImagen = $this->uploadImage($imagen);
+        }
+            
+        $query = $this->db->prepare('INSERT INTO producto (descripcion, id_categoria, nombre, precio, imagen) VALUES (?,?,?,?,?)');
+        $query->execute([$descripcion, $id_categoria, $nombre, $precio, $pathImagen]);
+    }
+
+    private function uploadImage($image){
+        $target = 'images/' . uniqid() . '.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
     }
 
     function deleteProduct($id){

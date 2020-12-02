@@ -67,12 +67,15 @@ class ProductController{
         $id_categoria = $_POST['id_categoria'];
 
         if($_FILES['imagen']['type'] == "image/jpj" || $_FILES['imagen']['type'] == "image/jpeg"){
-            $this->model->addProducts($nombre, $descripcion, $precio, $id_categoria, $FILES['imagen']['imagen_tmp']);
+            $imagen = $_FILES['imagen']['tmp_name'];
+            $this->model->addProducts($nombre, $descripcion, $precio, $id_categoria, $imagen);
         } 
 
         $this->model->addProducts($nombre, $descripcion, $precio, $id_categoria);
         header("Location: ".BASE_URL."admin");
     }
+
+ //----------
 
     function deleteProduct($params = null){
         $this->helper->adminCheckLog();
@@ -111,7 +114,6 @@ class ProductController{
         $num_total_registros = count($this->model->getProducts($criterio));
         $total_paginas = ceil($num_total_registros / $tamanio_pagina);
        
-
         if(isset($params[':PAGINA'])){
             $pagina = ($params[':PAGINA'] - 1);
 
@@ -137,5 +139,7 @@ class ProductController{
         $products = $this->model->getProductsByPage($var, $tamanio_pagina, $criterio);
         $this->view->showProductsByPage($products, $num_total_registros, $pagina, $tamanio_pagina, $total_paginas); //ver que se usa y q no
     }
+
+   
 }
 
