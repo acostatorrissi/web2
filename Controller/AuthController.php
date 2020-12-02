@@ -27,7 +27,7 @@ class AuthController{
         $this->view->showUssers($ussers);
     }
 
-    public function deleteUsser($params = null){ //VER SI ES NECESARIO VOLVER A CHECKEAR SESION
+    public function deleteUsser($params = null){ 
         $this->helper->adminCheckLog();
         $id = $params[':ID'];
         $this->model->deleteUsser($id);

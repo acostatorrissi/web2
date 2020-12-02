@@ -11,7 +11,6 @@ class CategoryController{
     private $helper;
 
     public function __construct(){
-          //instancio el modelo y la vista en constructor para poder reutilizar variables
         $this->model = new CategoryModel();
         $this->view = new CategoryView();
         $this->helper = new AuthHelper();  
@@ -26,16 +25,15 @@ class CategoryController{
     function insertCategory(){
         $this->helper->adminCheckLog();
         $nombre = $_POST['nombre'];
-        $urlImagen = $_POST['urlImagen'];
-        $this->model->addCategory($nombre, $urlImagen);
-        header("Location: ".BASE_URL."admincategory"); //falta la base
+        $this->model->addCategory($nombre);
+        header("Location: ".BASE_URL."admincategory"); 
     }
 
     function deleteCategory($params = null){
         $this->helper->adminCheckLog();
         $id = $params[':ID'];
         $this->model->deleteCategory($id);
-        header("Location: ".BASE_URL."admincategory");//falta la base
+        header("Location: ".BASE_URL."admincategory");
     }
 
     function showAdminCategory(){

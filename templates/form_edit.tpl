@@ -3,7 +3,7 @@
     <div class="container">
         {foreach from=$productos item=producto}      <!-- desempaquetamos la data que viene en forma de array -->      
             {if $producto->id == $id}
-                <form action="edit" method="POST">
+                <form action="edit" method="POST" enctype="multipart/form-data">
                     <h2>Editar producto</h2>
                     <div class="form-group">
                         <label>Nombre</label>
@@ -16,6 +16,13 @@
                      <div class="form-group">
                         <label>Precio </label>
                         <input name="precio" type="number" value={$producto->precio} required>
+                    </div>
+                     <div class="form-group">
+                        <label>Imagen </label>
+                        <input name="imagen" class="form-control" type="file">
+                        <div>
+                            <img src="{$producto->imagen}" width = "75" height = "75">
+                        </div>
                     </div>
                      <div class="form-group">
                         <label>Id<label>

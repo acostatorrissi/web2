@@ -11,7 +11,6 @@ class ProductController{
     private $modelCategory;//ROMPEMOS RESPONSABILIDADES POR UNA RAZON VALIDA
 
     public function __construct(){
-          //instancio el modelo y la vista en constructor para poder reutilizar variables
         $this->model = new ProductModel();
         $this->view = new ProductView();  
         $this->helper = new AuthHelper();
@@ -40,10 +39,9 @@ class ProductController{
 
     function showAdminPage(){
         $this->helper->adminCheckLog();
-        $this->modelCategory = new CategoryModel(); //ver preguntar en consulta
+        $this->modelCategory = new CategoryModel();
         $id = 0;
-        $criterio = ""; //muestra todos los productos
-        $products = $this->model->getProducts($criterio);
+        $products = $this->model->getProducts();
         $categories = $this->modelCategory->getCategory();
         $edit = false;
         $this->view->showAdminProducts($products, $edit, $id, $categories);
@@ -66,16 +64,31 @@ class ProductController{
         $precio = $_POST['precio'];
         $id_categoria = $_POST['id_categoria'];
 
-        if($_FILES['imagen']['type'] == "image/jpj" || $_FILES['imagen']['type'] == "image/jpeg"){
+        if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg"){
             $imagen = $_FILES['imagen']['tmp_name'];
             $this->model->addProducts($nombre, $descripcion, $precio, $id_categoria, $imagen);
+        }else{
+            $this->model->addProducts($nombre, $descripcion, $precio, $id_categoria);
         } 
-
-        $this->model->addProducts($nombre, $descripcion, $precio, $id_categoria);
         header("Location: ".BASE_URL."admin");
     }
 
- //----------
+    function updateProduct(){
+        $this->helper->adminCheckLog();
+        $id = $_POST['id']; 
+        $nombre = $_POST['nombre'];
+        $descripcion = $_POST['descripcion'];
+        $precio = $_POST['precio'];
+        $id_categoria = $_POST['id_categoria'];
+
+        if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg"){
+            $imagen = $_FILES['imagen']['tmp_name'];
+            $this->model->updateProduct($id, $nombre, $descripcion, $precio, $id_categoria, $imagen);
+        }else{
+            $this->model->updateProduct($id, $nombre, $descripcion, $precio, $id_categoria);
+        }
+        header("Location: ".BASE_URL."admin");
+    }
 
     function deleteProduct($params = null){
         $this->helper->adminCheckLog();
@@ -94,24 +107,10 @@ class ProductController{
         $this->view->showAdminProducts($products, $edit, $id, $categories); 
     }
 
-    function updateProduct(){
-        $this->helper->adminCheckLog();
-        $id = $_POST['id']; 
-        $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
-        $precio = $_POST['precio'];
-        $id_categoria = $_POST['id_categoria'];
-        $this->model->updateProduct($id, $nombre, $descripcion, $precio, $id_categoria);
-        header("Location: ".BASE_URL."admin");
-    }
-
-    //prueba paginacion
-
     function getProductsByPage($params = null){
         $this->helper->startSession();
-        $criterio = ""; // ver
         $tamanio_pagina = 3;
-        $num_total_registros = count($this->model->getProducts($criterio));
+        $num_total_registros = count($this->model->getProducts());
         $total_paginas = ceil($num_total_registros / $tamanio_pagina);
        
         if(isset($params[':PAGINA'])){
@@ -133,13 +132,12 @@ class ProductController{
             $criterio = " WHERE descripcion LIKE '%".$_GET['criterio']."%'";
             $num_total_registros = count($this->model->getProducts($criterio));
             $total_paginas = ceil($num_total_registros / $tamanio_pagina);
+        }else{
+            $criterio = "";
         }
        
-        $var = ($pagina * $tamanio_pagina);
-        $products = $this->model->getProductsByPage($var, $tamanio_pagina, $criterio);
-        $this->view->showProductsByPage($products, $num_total_registros, $pagina, $tamanio_pagina, $total_paginas); //ver que se usa y q no
+        $desde = ($pagina * $tamanio_pagina);
+        $products = $this->model->getProductsByPage($desde, $tamanio_pagina, $criterio);
+        $this->view->showProductsByPage($products, $pagina, $total_paginas); 
     }
-
-   
 }
-

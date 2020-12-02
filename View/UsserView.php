@@ -9,7 +9,6 @@ class UsserView{
     function showFormLogIn($error = null){
         $smarty = new Smarty();
         $smarty->assign('error', $error);
-        $smarty->assign('titulo', $this->title = "Log In"); //este title lo pasamos pero no lo usamos
         $smarty->display('templates/login_form.tpl');
     }
 
@@ -25,5 +24,4 @@ class UsserView{
         $smarty->assign('error', $error);
         $smarty->display('templates/register_form.tpl');
     }
-
 }

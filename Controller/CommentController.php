@@ -8,12 +8,10 @@
 
     class CommentController extends ApiController{
 
-
         function __construct(){
             parent::__construct();
             $this->model = new CommentModel();
         }
-
 
         public function getComment($params=null){
             $id = $params[':ID'];

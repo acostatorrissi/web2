@@ -10,8 +10,8 @@
                     <td>{$producto->descripcion}</td>
                     <td>${$producto->precio} </td>
                     <td>{$producto->categoria_nombre}</td>
-                    <td> <a class="black" href="delete/{$producto->id}"><i class="far fa-trash-alt btn-delete black"></i></a> <a href="edit/{$producto->id}"> <i class="far fa-edit btn-edit black"></i></a></td>
-                    <td><a class="black" href="product/{$producto->id}">Detalle</a></td>
+                    <td><a class="black" href="product/{$producto->id}"><img src="{$producto->imagen}" class="rounded float-left" width="100" height="100"></a></td>
+                    <td><a class="black" href="delete/{$producto->id}"><i class="far fa-trash-alt btn-delete black"></i></a> <a href="edit/{$producto->id}"> <i class="far fa-edit btn-edit black"></i></a></td>
                 </tr>
             {/foreach}  
         </table> 

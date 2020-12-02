@@ -21,6 +21,4 @@ class CategoryView{
         $smarty->assign('titulo', $this->title = "Categorias");
         $smarty->display('templates/category_admin.tpl');
     }
-
-    
 }

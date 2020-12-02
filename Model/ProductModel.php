@@ -1,17 +1,19 @@
 <?php
 
 
-class ProductModel{   //BINDEAR TODO
+class ProductModel{   
 
     private $db;
-    //instancio una vez la conexion para reutilizarla
     public function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_productos;charset=utf8','root','');
     }
 
-    function getProducts($criterio){
+    function getProducts($criterio = null){
 
-        //obtiene los productos de la bbdd
+        if($criterio == null){
+            $criterio = "";
+        }
+
         $query = $this->db->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria $criterio");
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_OBJ);
@@ -20,7 +22,7 @@ class ProductModel{   //BINDEAR TODO
     }
 
     function getProductById($id){
-        $query = $this->db->prepare("SELECT producto.*, categoria.url_imagen as img_url FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria WHERE id = ?");
+        $query = $this->db->prepare("SELECT producto.* FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria WHERE id = ?");
         $query->execute([$id]);
         $product = $query->fetch(PDO::FETCH_OBJ);
 
@@ -28,7 +30,6 @@ class ProductModel{   //BINDEAR TODO
     }
 
     function getProductsFromCat($id){
-        //obtiene los productos de la bbdd por categoria
         $query = $this->db->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria WHERE producto.id_categoria = ? ");
         $query->execute([$id]);
         $products = $query->fetchAll(PDO::FETCH_OBJ);
@@ -37,6 +38,8 @@ class ProductModel{   //BINDEAR TODO
     }
 
     function addProducts($nombre, $descripcion, $precio, $id_categoria, $imagen = null){
+
+        $pathImagen = null;
 
         if ($imagen){
             $pathImagen = $this->uploadImage($imagen);
@@ -57,15 +60,20 @@ class ProductModel{   //BINDEAR TODO
         $query->execute(array($id));
     }
 
-    function updateProduct($id, $nombre, $descripcion, $precio, $id_categoria){
-        $query = $this->db->prepare("UPDATE producto SET descripcion=?, id_categoria=?, nombre=?,  precio=? WHERE id=?");
-        $query->execute([$descripcion, $id_categoria, $nombre, $precio, $id]);
+    function updateProduct($id, $nombre, $descripcion, $precio, $id_categoria, $imagen = null){
+
+        $pathImagen = null;
+
+        if ($imagen){
+            $pathImagen = $this->uploadImage($imagen);
+        }
+
+        $query = $this->db->prepare("UPDATE producto SET descripcion=?, id_categoria=?, nombre=?,  precio=?, imagen=? WHERE id=?");
+        $query->execute([$descripcion, $id_categoria, $nombre, $precio, $pathImagen, $id]);
     }
 
-    //probando paginacion
-
-    function getProductsByPage($pagina, $tamanio_pagina, $criterio){
-        $query = $this->db->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria $criterio LIMIT $pagina, $tamanio_pagina");
+    function getProductsByPage($desde, $tamanio_pagina, $criterio){
+        $query = $this->db->prepare("SELECT producto.*, categoria.nombre as categoria_nombre, categoria.id_categoria as id_categoria FROM producto JOIN categoria ON producto.id_categoria = categoria.id_categoria $criterio LIMIT $desde, $tamanio_pagina");
         $query->execute([]);
         $products = $query->fetchAll(PDO::FETCH_OBJ);
         return $products;

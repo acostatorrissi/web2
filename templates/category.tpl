@@ -10,7 +10,7 @@
                     {foreach from=$categorias item=categoria}
                         <tr>
                             <td class='bold'>{$categoria->nombre|upper}</td></a>
-                            <td> <a class="black" href='category/{$categoria->id_categoria}'> Ver mas</a> </td>
+                            <td> <a class="black" href='category/{$categoria->id_categoria}'>Ver más</a> </td>
                         </tr>
                     {/foreach} 
                 </thead>  

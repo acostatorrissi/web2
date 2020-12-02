@@ -8,7 +8,6 @@ class CommentModel{
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_productos;charset=utf8','root','');
     }
 
-
     function getComment($id){
         $query = $this->db->prepare('SELECT * FROM comentario WHERE id_producto=?');
         $query->execute([$id]);
@@ -43,6 +42,4 @@ class CommentModel{
         $query->execute(array($id_producto));
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-    
-
 }
