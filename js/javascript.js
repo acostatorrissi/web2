@@ -29,6 +29,7 @@ function loadForm(){
 }
 
 const productId = document.querySelector('#js-data-id-producto').value;
+
 const usserName = document.querySelector('#js-input-hidden-email').value;
 const usserId = document.querySelector('#js-input-hidden-id').value;
 let ranking = document.querySelector('#js-ranking').value;

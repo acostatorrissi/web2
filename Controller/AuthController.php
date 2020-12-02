@@ -68,14 +68,10 @@ class AuthController{
            $this->helper->startSession();
            $this->helper->sessionData($usser); 
            
-            //$_SESSION['USSER_ID'] = $usser->id;
-            //$_SESSION['USSER_EMAIL'] = $usser->email;
-            //$_SESSION['USSER_ROLE'] = $usser->rol; // ver esto
-
             if($usser->rol == 0){
-                header("Location: ".BASE_URL."carta");//ver esto
+                header("Location: ".BASE_URL."carta");
             }else{
-                header("Location: ".BASE_URL."admin");//ver esto
+                header("Location: ".BASE_URL."admin");
             }
             die();
         }else{
@@ -102,7 +98,7 @@ class AuthController{
         }
 
         $passwordEncrypted = password_hash($password, PASSWORD_DEFAULT);
-        $this->model->registerNewUsser($name, $lastName, $email, $passwordEncrypted);  //VER ESTO PUEDE SER INSEGURO
+        $this->model->registerNewUsser($name, $lastName, $email, $passwordEncrypted);
         $this->getUser($email, $password); //no necesito verificar los datos porque acabo de registrar un usuario con los mismos
     }
 

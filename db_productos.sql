@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2020 a las 17:52:57
+-- Tiempo de generación: 02-12-2020 a las 14:48:19
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.6
 
@@ -60,11 +60,9 @@ CREATE TABLE `comentario` (
 --
 
 INSERT INTO `comentario` (`id`, `texto`, `ranking`, `id_usser`, `id_producto`) VALUES
-(1, 'Estaba muy rica', 4, 1, 12),
-(2, 'No fue lo mejor que probe', 3, 2, 5),
-(3, 'Espumosa!!', 5, 1, 11),
-(4, 'Buenardooo', 5, 2, 4),
-(5, 'Para chuparse los dedos', 4, 2, 7);
+(5, 'Para chuparse los dedos', 4, 2, 7),
+(10, 'Malardo', 2, 2, 1),
+(12, 'very rico', 5, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -119,8 +117,9 @@ CREATE TABLE `usser` (
 --
 
 INSERT INTO `usser` (`id`, `nombre`, `apellido`, `email`, `password`, `rol`) VALUES
-(1, 'marcos', 'acosta', 'marcos.acosta.em@gmail.com', '$2y$12$fRyUKnqSyxE/ahohscaJL.GPYd0aMG2IvphlPKQggERm1BhYIuwW6', 0),
-(2, 'rosario', 'perrotta', 'rosarioperrotta7@gmail.com', '$2y$12$Wc4.IkZHZxIpYMu9sue8LOzOEnDIwKsVce16jSo4KjNAkWQkFDWEe', 0);
+(2, 'rosario', 'perrotta', 'rosarioperrotta7@gmail.com', '$2y$12$Wc4.IkZHZxIpYMu9sue8LOzOEnDIwKsVce16jSo4KjNAkWQkFDWEe', 1),
+(3, 'Marcos', 'Acosta', 'marcos.acosta.em@gmail.com', '$2y$10$1SO5K9EOOcOxkqTtBTthW.EKFxTt0/iBXME1Tbcp77PpD6aVbyTYu', 1),
+(5, 'segundo', 'leanes', 'roo.pe@hotmail.com', '$2y$10$bmUphWKUbDSXqz.gEvauIe7EUrxejUJvtPLBHi1zHA8blR0nfjiMm', 0);
 
 --
 -- Índices para tablas volcadas
@@ -167,7 +166,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -179,7 +178,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `usser`
 --
 ALTER TABLE `usser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

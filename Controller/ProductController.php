@@ -42,7 +42,8 @@ class ProductController{
         $this->helper->adminCheckLog();
         $this->modelCategory = new CategoryModel(); //ver preguntar en consulta
         $id = 0;
-        $products = $this->model->getProducts();
+        $criterio = ""; //muestra todos los productos
+        $products = $this->model->getProducts($criterio);
         $categories = $this->modelCategory->getCategory();
         $edit = false;
         $this->view->showAdminProducts($products, $edit, $id, $categories);
@@ -64,6 +65,11 @@ class ProductController{
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];
         $id_categoria = $_POST['id_categoria'];
+
+        if($_FILES['imagen']['type'] == "image/jpj" || $_FILES['imagen']['type'] == "image/jpeg"){
+            $this->model->addProducts($nombre, $descripcion, $precio, $id_categoria, $FILES['imagen']['imagen_tmp']);
+        } 
+
         $this->model->addProducts($nombre, $descripcion, $precio, $id_categoria);
         header("Location: ".BASE_URL."admin");
     }
