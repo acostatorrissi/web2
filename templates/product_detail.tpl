@@ -25,8 +25,9 @@
                         <textarea  class="form-control" rows="3" cols="50" name="input_text" id="input_text" ></textarea>
                     </div>
 
-                    <h6> Valoracion </h6>
+                    
                     <div class="form-group col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+                        <h6> Valoracion </h6>
 
                         <select class="ranking" id="js-ranking"> <label for="js-ranking"> Calificaciones</label>
                             <option type="radio" name="ranking" value="5"  class="fas fa-star">5</option>

@@ -86,7 +86,7 @@ console.log(productId);
 
         const comment = {
             "texto": document.querySelector('#input_text').value,
-            "puntaje": ranking,
+            "ranking": ranking,
             "id_usser": usserId,
             "id_producto": productId
         }
@@ -98,7 +98,7 @@ console.log(productId);
             body: JSON.stringify(comment)
         })
         .then(response => {
-            if(!response.ok)    
+            if(response.ok)    
             return response.json();
         })
         .then(comment => {
@@ -106,7 +106,7 @@ console.log(productId);
             app.commentsLength = app.comments.length;
         })
         .catch(error => console.log(error));
-        
+       
     }
  
 

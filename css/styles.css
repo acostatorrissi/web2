@@ -9,6 +9,9 @@
     font-weight: bold;
 }
 
+.li-comment{
+    list-style: none;
+}
 
 html{
     font-family: Roboto, sans-serif;
@@ -81,7 +84,7 @@ a, a:visited{
 
 
 .page-container{
-    background-image: url("https://t.ly/HdAA"); 
+    background-image: url("https://t.ly/t5KC"); 
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
