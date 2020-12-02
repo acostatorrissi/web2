@@ -8,32 +8,12 @@
 
     class CommentController extends ApiController{
 
-        private $helper;
-        private $productModel;
 
         function __construct(){
             parent::__construct();
             $this->model = new CommentModel();
-            $this->productModel = new ProductModel();
-            $this->helper = new AuthHelper();
         }
 
-
-        /*
-        public function getComment($params = null){ //bien
-            $id = $params[':ID'];
-            $product = $this->productModel->getProductById($id);
-            if(empty($product)){
-                $this->view->response("El producto con el id: $id no existe", 404);
-                die();
-            }
-            $comment = $this->model->getComment($id);
-
-            if($comment){
-                $this->view->response($comment, 200);
-            }
-        }
-        */
 
         public function getComment($params=null){
             $id = $params[':ID'];
@@ -56,23 +36,17 @@
         }
 
         public function add(){ //bien
-            $this->helper->checkLog();
             $body = $this->getData();
-
+            // if(empty($body->texto) || empty($body->ranking)){
+            // }
             //me hago de las valores de la variable que me trae el body
-
-            $texto = $body->text;
-            $ranking = $body->ranking;
-            $usser = $body->id_usser;
-            $producto = $body->id_producto;
-
-            //se lo mando al modelo
-            $id = $this->model->add($texto, $ranking, $usser, $producto);
-            if($id > 0){
-                $this->view->response($this->model->commentById($id), 200);
+            $id = $this->model->add($body->texto, $body->ranking, $body->id_usser, $body->id_producto);
+            $comment = $this->model->commentById($id);
+            if($id){
+                $this->view->response($comment, 200);
                 //generalmente cuando se hace insert en API devuelve la tarea
             }else{
-                $this->view->response("No se pudo insertar el comentario con el id=$id no existe", 500);
+                $this->view->response("No se pudo insertar el comentario", 500);
             }
         }
 

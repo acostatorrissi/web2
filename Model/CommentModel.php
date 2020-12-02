@@ -25,8 +25,8 @@ class CommentModel{
     }
 
     function add($texto, $ranking, $id_usser, $id_producto){
-        $query = $this->db->prepare('INSERT INTO comentario (texto, ranking, $id_usser, $id_producto) VALUES (?,?,?,?)');
-        $query->execute([$texto, $ranking, $id_usser, $id_producto]);
+        $query = $this->db->prepare('INSERT INTO comentario(texto, ranking, id_usser, id_producto) VALUES (?,?,?,?)');
+        $query->execute(array($texto, $ranking, $id_usser, $id_producto));
         return $this->db->lastInsertId();
     }
 

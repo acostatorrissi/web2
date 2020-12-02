@@ -18,18 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
     "use strict"
     checkRole();
     getComents();
+    loadForm();
 });
 
 function loadForm(){
     let form = document.querySelector('#comment-form');
     if(form!= null){
-        document.querySelector('comment-form').addEventListener('submit', addComent);
+        document.querySelector('#comment-button').addEventListener('click', addComent);
     }
 }
 
-const productId = document.querySelector('#vue_container').getAttribute('data-id-producto');
-const usserName = document.querySelector('#vue_container').getAttribute("usser-name");
-const usserId = document.querySelector('#vue_container').getAttribute("usser-id");
+const productId = document.querySelector('#js-data-id-producto').value;
+const usserName = document.querySelector('#js-input-hidden-email').value;
+const usserId = document.querySelector('#js-input-hidden-id').value;
+let ranking = document.querySelector('#js-ranking').value;
+
+console.log(productId);
+
 
     function getComents(){ 
         fetch('api/productComments/' + productId)
@@ -46,11 +51,14 @@ const usserId = document.querySelector('#vue_container').getAttribute("usser-id"
             return response.json();
         })
         .then(response =>{
-            deleteCommentById($id);
+            getComents();
             app.commentsLength = app.comments.length;
         })
         .catch(error=> console.log(error));
+
+        getComents();
     }
+
 
 
     
@@ -71,27 +79,18 @@ const usserId = document.querySelector('#vue_container').getAttribute("usser-id"
     }
 
  
-    function addComent(){
+    function addComent(event){
 
-        e.preventDefault();
-
-        selection = document.querySelectorAll('input[name="ranking"]');
-        let ranking;
-
-        selection.forEach(element => {
-            if(element.checked){
-                ranking = element.value;
-            }
-        });
+        event.preventDefault();
 
 
-        const coment = {
-            nombre_usuario: usserName,
-            id_producto: productId,
-            id_usuario: usserId,
-            puntaje: ranking,
-            texto: document.querySelector('#input-text').value
+        const comment = {
+            "texto": document.querySelector('#input_text').value,
+            "puntaje": ranking,
+            "id_usser": usserId,
+            "id_producto": productId
         }
+       
         
         fetch('api/comments',{
             method: 'POST',
@@ -99,9 +98,7 @@ const usserId = document.querySelector('#vue_container').getAttribute("usser-id"
             body: JSON.stringify(comment)
         })
         .then(response => {
-            if(!response.ok)
-                console.log(response);
-    
+            if(!response.ok)    
             return response.json();
         })
         .then(comment => {

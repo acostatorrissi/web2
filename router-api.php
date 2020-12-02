@@ -5,9 +5,8 @@
 
 
     $r = new Router();
-
-    $r->addRoute("productComments/:ID", "GET", "CommentController", "getComment");
     //$r->addRoute("productComments/:ID", "GET", "CommentController", "getCommentsOfProduct");
+    $r->addRoute("productComments/:ID", "GET", "CommentController", "getComment");
     $r->addRoute("comments/:ID", "DELETE", "CommentController", "delete");
     $r->addRoute("comments", "POST", "CommentController", "add");
 
