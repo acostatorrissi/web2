@@ -39,7 +39,7 @@ class AuthHelper{
         $this->startSession();
         $_SESSION['USSER_ID'] = $usser->id;
         $_SESSION['USSER_EMAIL'] = $usser->email;
-        $_SESSION['USSER_ROLE'] = $usser->rol; // ver esto
+        $_SESSION['USSER_ROLE'] = $usser->rol; 
     }
 
     function isLoggedIn(){

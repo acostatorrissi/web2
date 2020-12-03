@@ -1,10 +1,13 @@
 {literal}
 <div id="app-comments">
-    <h3>Comentarios</h3>
+   
     <div class=" mt-20">
-        <div class="d-flex justify-content-center row">
+        
             
+        
+        <div class="d-flex justify-content-center row">
             <ul>    
+                <h3>Comentarios</h3>
                 <li style="none"  class="li-comment" v-for="comment in comments">
             
                     <div class="row">

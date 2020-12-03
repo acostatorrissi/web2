@@ -27,9 +27,7 @@ class ProductView{
         $smarty->display('templates/category_product.tpl'); 
     }
 
-    //esto iria en el mvc del admin que inicio sesion
-    //function showAdminPage($productos, $drinks, $edit, $id){
-     function showAdminProducts($productos, $edit, $id, $categories){ 
+    function showAdminProducts($productos, $edit, $id, $categories){ 
         $smarty = new Smarty();
         $smarty->assign('productos', $productos);
         $smarty->assign('categorias', $categories);

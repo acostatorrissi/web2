@@ -12,7 +12,7 @@
         <h2>${$producto->precio}</h2>
     </div>
     <figure class="figProduct">
-            <img src="{$producto->imagen}" alt="{$producto->nombre}" class="imgProduct">
+        <img src="{$producto->imagen}" alt="{$producto->nombre}" class="imgProduct">
     </figure>
 </div>
 {if $usser eq true && $usser.USSER_ROLE == 1}
@@ -24,11 +24,11 @@
 <div class="col-lg-50">
         <div class="col-md-50">
         <div class="row justify-content-center">
-    
+            
+            <div class="py-5 offset-1 col-lg-10">
+            
             {if $usser eq true}
          
-                <div class="py-5 offset-1 col-lg-10">
-                    
                     <form method="POST" id="comment-form">
                         <div class="form-group col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
                             <span> Dejanos tu comentario</span>
@@ -59,7 +59,11 @@
                 <div class="row justify-content-center">
                         <div class="col-md-8" id="vue_container" usser="{$usser['USSER_ROLE']}" data-id-producto="{$producto->id}">
             {else}
-                    <div class="col-md-8" id="vue_container2" usser ="2" data-id-producto="{$producto->id}">
+                    <div class="col-md-8" id="vue_container" usser ="2" data-id-producto="{$producto->id}">
+                        <input type="hidden" class="form-control" id="js-input-hidden-email" name="usser-name" value="unknown">
+                        <input type="hidden" class="form-control" id="js-input-hidden-id" name="usser-id" value="0">
+                        <input type="hidden" class="form-control" id="js-data-id-producto" name="data-id-producto" value="{$producto->id}">
+                        <input type="hidden" class="form-control" id="js-ranking" name="js-ranking" value="0">
             {/if}
                         {include file="./vue/comentarios.vue"}
                      </div>
